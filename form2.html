@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>MYCF</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="main.js"></script>
+	
+</head>
+
+<body>
+
+<div id="form2Page" data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed" data-theme="a">
+    	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext" style="height:35px;width:35px">Menu</a>
+    		<a href="javascript:BackToForms()" data-role="button" data-icon="delete" data-iconpos="notext" style="height:35px;width:35px">Back</a>
+      	</div>
+      	<img src="images/logo_sm.png" style="float:right" />
+      		<h6 style="font-size:24px;color#06234B">DSL Engineering</h6>
+    </div>
+
+    <div data-role="content" >    
+		
+		<div class="titlec">COMPANY AUDIT REPORT - <span id="CNAME"></span></div>
+		<table align="center" cellspacing="0">
+			<tr>
+				<td class="headtabletd" width="25%">Company Code</td>
+				<td>&nbsp;</td>
+				<td class="headtabletd" width="20%">Standard</td>
+				<td>&nbsp;</td>
+				<td class="headtabletd" width="20%">Audit Date</td>
+			</tr>
+			<tr>
+				<td id="CCODE"  class="headtablesubtd" >FTSF11</td>
+				<td>&nbsp;</td>
+				<td class="headtablesubtd">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="padding:0;margin:0">
+					<input type="radio" name="chkType" id="chk471" value="0"  />
+					<label for="chk471">47.1</label>
+	
+					<input type="radio" name="chkType" id="chk472" value="1"  />
+					<label for="chk472">47.2</label>
+	
+					
+					</fieldset>
+				</td>
+				<td>&nbsp;</td>
+				<td id="ADATE" class="headtablesubtd">2014-12-10</td>
+			</tr>
+		</table>
+		
+		<div style="height:15px"></div>
+		
+		
+		<div class="page" id="p1">
+			<div class="question"><span class="letter">a.</span> Mark each welding process currently in use in the shop:</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="checkbox" name="aSMAW" id="aSMAW" />
+				<label for="aSMAW">SMAW</label>
+				<input type="checkbox" name="aGMAW" id="aGMAW" />
+				<label for="aGMAW">GMAW</label>
+				<input type="checkbox" name="aFCAW" id="aFCAW" />
+				<label for="aFCAW">FCAW</label>
+				<input type="checkbox" name="aSAW" id="aSAW" />
+				<label for="aSAW">SAW</label>
+				<input type="checkbox" name="aGTAW" id="aGTAW" />
+				<label for="aGTAW">GTAW</label>
+				<input type="checkbox" name="aOther" id="aOther" />
+				<label for="aOther">Other</label>
+			</fieldset>
+			
+			<div class="space"></div>
+	
+			<div class="question"><span class="letter">b.</span> Mark each welding process currently in use for field ops:</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="checkbox" name="bSMAW" id="bSMAW" />
+				<label for="bSMAW">SMAW</label>
+				<input type="checkbox" name="bGMAW" id="bGMAW" />
+				<label for="bGMAW">GMAW</label>
+				<input type="checkbox" name="bFCAW" id="bFCAW" />
+				<label for="bFCAW">FCAW</label>
+				<input type="checkbox" name="bSAW" id="bSAW" />
+				<label for="bSAW">SAW</label>
+				<input type="checkbox" name="bGTAW" id="bGTAW" />
+				<label for="bGTAW">GTAW</label>
+				<input type="checkbox" name="bOther" id="bOther" />
+				<label for="bOther">Other</label>
+			</fieldset>
+			
+			
+		<div class="space"></div>
+		
+		
+			<div class="question"><span class="letter">c.</span> Does the company have CWB approved welding procedure specifications and data sheets covering all types of work currently performed?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="crad" id="cradyes" value="1">
+			<label for="cradyes">YES</label>
+			<input type="radio" name="crad" id="cradno" value="0">
+			<label for="cradno">NO</label>
+			<input type="radio" name="crad" id="cradnv" value="-1">
+			<label for="cradnv">N/V</label>
+			</fieldset>
+			
+			<div class="space"></div>
+			
+			
+	
+			<div class="question"><span class="letter">d.</span> Was the work in progress performed in accordance with CWB approved welding procedure specifications and data sheets?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="drad" id="dradyes" value="1">
+			<label for="dradyes">YES</label>
+			<input type="radio" name="drad" id="dradno" value="0">
+			<label for="dradno">NO</label>
+			<input type="radio" name="drad" id="dradnv" value="-1">
+			<label for="dradnv">N/V</label>
+			</fieldset>
+			
+			
+			
+			<div class="space"></div>
+		
+		
+		
+			<div class="question"><span class="letter">e.</span> If the answer to question C and/or D is "NO"; specify reasons and what action has been taken:</div>
+			<textarea id="eNOTES" ></textarea>
+		
+			<div class="space"></div>
+	
+			<div class="question"><span class="letter">f.</span> Is the storage of electrodes in accordance with CSA standards?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="frad" id="fradyes" value="1">
+			<label for="fradyes">YES</label>
+			<input type="radio" name="frad" id="fradno" value="0">
+			<label for="fradno">NO</label>
+			<input type="radio" name="frad" id="fradnv" value="-1">
+			<label for="fradnv">N/V</label>
+			</fieldset>
+			
+		
+			<div class="space"></div>
+	
+			<div class="question"><span class="letter">g.</span> Is the level of workmanship in conformance with CSA standards?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="grad" id="gradyes" value="1">
+			<label for="gradyes">YES</label>
+			<input type="radio" name="grad" id="gradno" value="0">
+			<label for="gradno">NO</label>
+			<input type="radio" name="grad" id="gradnv" value="-1">
+			<label for="gradnv">N/V</label>
+			</fieldset>
+			
+			
+			
+	
+			
+			
+		</div>
+		
+		<div class="page" id="p2" style="display:none">
+			
+			
+			<div class="question"><span class="letter">h.</span> Are all welders currently employed, qualified by CWB to the pertinent certification standard for the work they are doing?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="hrad" id="hradyes" value="1">
+			<label for="hradyes">YES</label>
+			<input type="radio" name="hrad" id="hradno" value="0">
+			<label for="hradno">NO</label>
+			<input type="radio" name="hrad" id="hradnv" value="-1">
+			<label for="hradnv">N/V</label>
+			</fieldset>
+			
+			<div class="space"></div>
+			
+			
+			
+			<div class="question"><span class="letter">i.</span> Have all welding supervisors currently directing the company's welding operations completed the qualifying examinations of the pertinent certification standard?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="irad" id="iradyes" value="1">
+			<label for="iradyes">YES</label>
+			<input type="radio" name="irad" id="iradno" value="0">
+			<label for="iradno">NO</label>
+			<input type="radio" name="irad" id="iradnv" value="-1">
+			<label for="iradnv">N/V</label>
+			</fieldset>
+			
+			<div class="space"></div>
+			
+		
+			<div class="question"><span class="letter">j.</span> Are all welding supervisors sufficiently familiar with the company's welding operations?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="jrad" id="jradyes" value="1">
+			<label for="jradyes">YES</label>
+			<input type="radio" name="jrad" id="jradno" value="0">
+			<label for="jradno">NO</label>
+			<input type="radio" name="jrad" id="jradnv" value="-1">
+			<label for="jradnv">N/V</label>
+			</fieldset>
+			
+			
+			<div class="space"></div>
+	
+			<div class="question"><span class="letter">k.</span> Are copies of the company's welding procedures available in the shop and at the field locations to those personnel who require them?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="krad" id="kradyes" value="1">
+			<label for="kradyes">YES</label>
+			<input type="radio" name="krad" id="kradno" value="0">
+			<label for="kradno">NO</label>
+			<input type="radio" name="krad" id="kradnv" value="-1">
+			<label for="kradnv">N/V</label>
+			</fieldset>
+			
+			<div class="space"></div>
+				
+		
+			<div class="question"><span class="letter">l.</span> Are all consumables currently being used certified by the CWB?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="lrad" id="lradyes" value="1">
+			<label for="lradyes">YES</label>
+			<input type="radio" name="lrad" id="lradno" value="0">
+			<label for="lradno">NO</label>
+			<input type="radio" name="lrad" id="lradnv" value="-1">
+			<label for="lradnv">N/V</label>
+			</fieldset>
+			
+			<div class="space"></div>
+			
+		
+			<div class="question"><span class="letter">m.</span> Do the drawings used for fabrication and/or erection contain sufficient notes, weld details and welding symbols conforming to the applicable design standards needed to produce the desired weld?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="mrad" id="mradyes" value="1">
+			<label for="mradyes">YES</label>
+			<input type="radio" name="mrad" id="mradno" value="0">
+			<label for="mradno">NO</label>
+			<input type="radio" name="mrad" id="mradnv" value="-1">
+			<label for="mradnv">N/V</label>
+			</fieldset>
+			
+			
+			<div class="space"></div>
+		
+			<div class="question"><span class="letter">n.</span> Has the latest CWB audit been reviewed by the company?</div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+			<input type="radio" name="nrad" id="nradyes" value="1">
+			<label for="nradyes">YES</label>
+			<input type="radio" name="nrad" id="nradno" value="0">
+			<label for="nradno">NO</label>
+			<input type="radio" name="nrad" id="nradnv" value="-1">
+			<label for="nradnv">N/V</label>
+			</fieldset>
+			
+		
+		</div>
+		<div class="page" id="p3" style="display:none">
+		
+			<div class="question"><span class="letter">o.</span> This report has been reviewed by the retained engineer of the subject company?</div>
+			<label><input type="checkbox" name="oYES" id="oYES" /> YES</label>
+			
+		
+			<div class="space"></div>
+		
+		
+			<div class="question"><span class="letter">p.</span> COMMENTS:</div>
+			<textarea id="pCOMMENTS" ></textarea>
+		
+			
+			<div class="space"></div>
+		
+		
+			<div class="question"><b>It is in my opinion that, on the basis of information made available to me the requirements of the pertinent standards:</b></div>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="radPass" id="passyes" value="1">
+				<label for="passyes">Have been met</label>
+				<input type="radio" name="radPass" id="passno" value="0">
+				<label for="passno">Have not been met</label>
+			</fieldset>
+			<fieldset>
+				<label for="txtBy">Completed by:</label>
+				<input type="text" name="txtBy" id="txtBy">
+			</fieldset>
+			
+			
+			
+		</div>
+		
+		
+		
+		<div id="err" style="display:none"></div>
+	</div>
+
+	<div data-role="footer" data-position="fixed">
+    	<div data-role="navbar">
+    		<ul>
+    			<li><a id="btnPrev" href="javascript:PrevPage()" data-icon="arrow-l">Previous</a></li>
+    			<li><a id="btnNext" href="javascript:NextPage()" data-icon="arrow-r" data-iconpos="right">Next</a></li>
+    		</ul>
+    	</div>
+	</div>
+    
+    
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="b">
+		<p style="text-align:center"><img src="images/mcf.png" width="70%" /></p>
+		<div style="height:20px"></div>
+	   	<ul data-role="listview" data-filter="false" data-theme="b" data-inset="false">
+	   	
+	    </ul>
+	</div><!-- /panel -->
+
+	<script>
+	
+		$(document).on("pagebeforeshow","#form2Page",function(){
+		    window.localStorage.setItem("CPAGE",1);
+			var name = window.localStorage.getItem("CNAME");
+			$("#CNAME").html(name);
+			$('#btnPrev').buttonMarkup({ icon: "back" });
+			$('#btnPrev').html("Back to forms");
+		});	
+		
+		function NextPage(){
+			var page = window.localStorage.getItem("CPAGE");
+			if(ValidatePage(page)){
+				var next = parseInt(page) + 1;
+				$(".page").hide();
+				
+				$("#p" + next).toggle("slide");
+				window.localStorage.setItem("CPAGE", next);
+				if(next == 3){
+					$("#btnNext").html("Submit");
+					$('#btnNext').buttonMarkup({ icon: "check" });
+				}else if(next == 2){
+					$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
+					$('#btnPrev').html("Previous");
+				}
+			}
+		}	
+		
+		function PrevPage(){
+			var page = window.localStorage.getItem("CPAGE");
+			var tmp = parseInt(page - 1);
+			var prev = parseInt(page) - 1;
+			if(prev <= 0){
+				prev = 1;
+			}
+			$(".page").hide();
+			$("#p" + prev).toggle("slide");
+			window.localStorage.setItem("CPAGE", prev);
+			$('#btnNext').buttonMarkup({ icon: "arrow-r" });
+			$('#btnNext').html("Next");
+			if(tmp <= 0){
+				BackToForms();
+			}else if(prev == 1){
+				$('#btnPrev').html("Back to forms");
+				$('#btnPrev').buttonMarkup({ icon: "back" });
+			}else{
+				$('#btnPrev').html("Previous");
+				$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
+			}
+		}	
+		
+		function ValidatePage(page){
+			var bReturn = true;
+			var msg = "";
+			if(page == 1 ){
+				
+				if(!$("input[name='crad']:checked").val()){
+					msg += "Please answer question c.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='drad']:checked").val()){
+					msg += "Please answer question d.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='frad']:checked").val()){
+					msg += "Please answer question f.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='grad']:checked").val()){
+					msg += "Please answer question g.<br />";
+					bReturn = false;
+				}
+				
+				if( (($("input[name='crad']:checked").val() == "0") ||  ($("input[name='drad']:checked").val() == "0")) && ($("#eNOTES").val() == "")){
+					msg += "Please specify the reason(s) for answering 'NO' to questions c. and/or d. in the box provided in question e. <br />";
+					bReturn = false;
+				}
+				
+				
+			}else if(page == 2){
+				
+				if(!$("input[name='hrad']:checked").val()){
+					msg += "Please answer question h.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='irad']:checked").val()){
+					msg += "Please answer question i.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='jrad']:checked").val()){
+					msg += "Please answer question j.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='krad']:checked").val()){
+					msg += "Please answer question k.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='lrad']:checked").val()){
+					msg += "Please answer question l.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='mrad']:checked").val()){
+					msg += "Please answer question m.<br />";
+					bReturn = false;
+				}
+				if(!$("input[name='nrad']:checked").val()){
+					msg += "Please answer question n.<br />";
+					bReturn = false;
+				}	
+			}
+			if(bReturn == false){
+				showErrorMessage(msg, $("#errmsg"), 0);
+			}
+			return bReturn;
+		}
+		
+		function ValidateSubmit(){
+			var bReturn = true;
+			if(!$("input[name='chkType']:checked").val()){
+				msg = "Please select a Standard (47.1 or 47.2)";
+				bReturn = false;
+			}else if(!$("input[name='radPass']:checked").val()){
+				msg = "Please select whether the requirements of the pertinent standards have or have not been met";
+			}else if(!$("input[name='oYES']:checked").val()){
+				msg = "This report must be reviewed by the retained engineer of the subject company (q.o.)"	;
+			}else if(!$("#txtBy").val() ){
+				msg = "Please enter a name in the 'Completed by' box";
+			}
+			
+			if(bReturn == false){
+				showErrorMessage(msg, $("#errmsg"), 0);
+			}
+			return bReturn;
+		}
+		
+		function BackToForms(){
+			if (confirm("Are you sure you want to leave this form?  Any data entered will be lost.")) {
+				$.mobile.changePage("forms.html");
+			}
+			
+		}
+	</script>
+
+</div>
+
+</body>
+</html>

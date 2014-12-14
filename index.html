@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>MYCF</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="main.js"></script>
+	
+	
+	<script type="text/javascript" src="jqm-datebox-1.4.5.core.min.js"></script>
+	<script type="text/javascript" src="jqm-datebox-1.4.5.mode.flipbox.min.js"></script>
+	<link rel="stylesheet" href="css/jqm-datebox-1.4.5.min.css" />
+	<script src="phonegap.js"></script> 
+	
+	
+	<script>
+	function init() {
+		
+		document.addEventListener("deviceready", deviceReady, false);
+		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+			$("body").addClass("ios7");
+			$("body").append('');
+			}
+	}
+	
+	function deviceReady() {
+		
+	   
+		console.log("deviceReady");
+		//GetCommon();
+		StatusBar.overlaysWebView(false);
+		
+		
+		
+		
+		
+		setTimeout(function() {
+        	var networkState = navigator.connection.type;
+			if(networkState == Connection.NONE){
+				window.location = "err.html";
+			}else{
+			
+			checkPreAuth();
+			
+			//$.mobile.changePage("login.html");
+			}
+		}, 2000);
+		
+		
+		
+	}
+
+function checkPreAuth() {
+	
+		console.log("checkPreAuth");
+	    var u = window.localStorage.getItem("username");
+	       
+	    if(u != undefined) {
+	    	
+	        handleLogin();
+	    }else{
+	   
+	    	window.location = "login.html";
+	    }
+	}
+	
+function handleLogin() {
+	
+		 var u = window.localStorage.getItem("username");
+	  	 
+  		 $.ajax({
+	        type: "POST",
+	        url: "http://www.mycfit.ca/site_dsl/services/login.php",
+	       
+	        data: {'u' : u},
+	        dataType: "json",
+	        success: function(data) {
+	        	
+	        	
+    	          if(data.error !== ""){
+    	        	window.location = "login.html";
+    	        	
+    	        }else{
+    	        	window.localStorage.setItem("username", u);
+    	        	window.localStorage.setItem("name", data.name);
+    	        	   	        
+    	        	   	        
+    	        	
+        			window.localStorage.setItem("uid", data.uid);   
+        		   if(data.uid > 0){   			
+        		   	window.location = "company.html";
+        		   	
+        		   }else{
+        		   	window.location = "login.html";
+        		   }
+        	        
+    	        }
+	     	},
+     	 error: function(xhr, desc, err) {
+           window.location = "index.html";
+           }
+      	}); 
+  	
+   
+    
+}
+	</script>
+
+</head>
+
+<body onload="init()">
+
+<div id="launcherPage" data-role="page" style="background-color:#000 !important">
+	<div data-role="content" id="content">
+		
+		<div class="center animClass">
+			<img src="images/logo.png" height="213px" width="250px"  />
+			<img src="images/ajax-loader.gif" />
+		</div>
+	
+          <div id="loader"></div>
+	</div>
+
+
+</div>
+
+
+
+</body>
+</html>

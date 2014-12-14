@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>MYCF</title>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+		<link rel="stylesheet" href="css/styles.css" />
+		<script src="jquery-1.10.2.min.js"></script>
+		<script src="jquery.mobile-1.4.3.min.js"></script>
+		<script type="text/javascript" src="jqm-datebox-1.4.5.core.min.js"></script>
+		<script type="text/javascript" src="jqm-datebox-1.4.5.mode.flipbox.min.js"></script>
+		<link rel="stylesheet" href="css/jqm-datebox-1.4.5.min.css" />
+		<script src="main.js"></script>
+
+		<script>
+			function Login() {
+				$("#loader").show();
+				setTimeout(function() {
+					
+					var u = $("#username").val();
+					
+
+					if (u != '' ) {
+						
+						
+						$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_dsl/services/login.php",
+							async: false,
+							data : {
+								'u' : u
+								
+							},
+							dataType : "json",
+							success : function(data) {
+								
+								$("#loader").hide();
+								if (data.error !== "") {
+									
+									showErrorMessage(data.error, $("#errmsg"), 0);
+
+								} else {
+									
+									window.localStorage.setItem("username", u);
+									window.localStorage.setItem("uid", data.uid);
+									window.localStorage.setItem("name", data.name);
+									
+									window.location = "company.html";
+
+								}
+							},
+							error : function(xhr, desc, err) {
+								$("#loader").hide();
+								
+								showErrorMessage("There was a problem logging you in, please try again.", $("#errmsg"), 0);
+
+							}
+						});
+
+					} else {
+						showErrorMessage("Please enter an email address  ", $("#errmsg"), 0);
+						$("#loader").hide();
+
+					}
+				}, 1000);
+
+			}
+		</script>
+	</head>
+
+	<body>
+
+		<div id="loginPage" data-role="page" data-theme="a">
+
+		
+
+			<div data-role="content" >
+				
+				<div class="center">
+				
+				<p style="text-align:center"><img src="images/logo.png" width="250px" /></p>
+							<form id="loginForm">
+					
+						
+						<input type="email" name="username" id="username" value="" placeholder="Email" />
+				
+
+				
+						
+					
+					
+
+					<p class="txtc"><img id="loader" src="images/ajax-loader.gif" style="display:none" />
+					</p>
+					<input type="button" onclick="Login()" value="Login" id="submitButton">
+				</form>
+			
+				
+				</div>
+
+	
+			</div>
+
+			
+
+			<script>
+				$(window).keypress(function(event) {
+					if (event.keyCode == '13') {
+						Login();
+					}
+
+				});
+				
+				
+
+			</script>
+
+		</div>
+
+	</body>
+</html>
