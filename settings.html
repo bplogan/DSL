@@ -14,7 +14,7 @@
 
 <body>
 
-<div id="companyPage" data-role="page" data-theme="a">
+<div id="settingsPage" data-role="page" data-theme="a">
 
 	<div data-role="header" data-position="fixed" data-theme="a">
     		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
@@ -22,13 +22,20 @@
     		
       	</div>
       	<img src="images/logo_sm.png" style="float:right" />
-      	<h6 style="font-size:24px;color#06234B">Companies</h6>
+      	<h6 style="font-size:24px;color#06234B">Settings</h6>
     </div>
 
     <div data-role="content" >    
-		<div class="title">Select a Company</div>
-		<ul id="companyList" data-role="listview" data-filter="true" data-inset="true"  data-theme="a"></ul>
-		<div id="err" style="display:none"></div>
+		
+		<form id="frmSettings">
+			<fieldset>
+				<label for="txtEmail">Default cc email address for all sent forms:</label>
+				<input type="email" name="txtEmail" id="txtEmail" />
+			</fieldset>
+			
+			<button type="submit">Save</button>
+		</form>
+		
 	</div>
 
 	<div data-role="footer" data-position="fixed" class="ui-bar">
@@ -47,22 +54,21 @@
 
 	<script>
 	
-		$(document).on("pagebeforeshow","#companyPage",function(){
-			 GetCompanies();
+		$(document).on("pagebeforeshow","#settingsPage",function(){
+			 GetSettings();
 		});	
 			
-		function GetCompanies(){
+		function GetSettings(){
 			
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_companies.php",
+				url : "http://mycfit.ca/site_dsl/services/get_settings.php",
 				async : false,
 				data : {},
 				dataType : "json",
 				success : function(data) {
 		
-					$("#companyList").empty().append(data.result);
-					$('#companyList').listview('refresh');
+					$("#txtEmail").val(data.email);
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
@@ -71,10 +77,34 @@
 			});
 		}	
 		
-		function GoCompany(id,name){
-			window.localStorage.setItem("CID",id);
-			window.localStorage.setItem("CNAME",name);
-			window.location= "forms.html";
+		$('#frmSettings').submit(function (e) {
+		    e.preventDefault();
+		    SaveSettings();
+		});
+		
+	function SaveSettings(){	
+		var email = $("#txtEmail").val();
+		
+		$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/edit_settings.php",
+				async : false,
+				data : {'EMAIL' : email},
+				dataType : "json",
+				success : function(data) {
+					if(data.error == ""){
+						$("#txtEmail").val(data.result);
+						showErrorMessage("Settings were saved successfully!", $("#err"), 0);
+					}else{
+						showErrorMessage(data.error, $("#err"), 0);
+					}
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+	
 		}
 	</script>
 

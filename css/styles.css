@@ -63,5 +63,9 @@ div.titlec{
 div.space{
 	height:10px;
 }
+.ui-panel-wrapper {
+ 	background:#FFFFFF !important;
+	
+}
 
 
