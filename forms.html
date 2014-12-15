@@ -71,8 +71,7 @@
 	<script>
 	
 		$(document).on("pagebeforeshow","#formPage",function(){
-			var name = window.localStorage.getItem("CNAME");
-			$("#companyName").html(name);
+			
 			
 			GetForms();
 		});	
@@ -96,6 +95,10 @@
 					
 					$("#historyList").empty().append(data.result);
 					$('#historyList').listview('refresh');
+					
+					var name = window.localStorage.getItem("CNAME");
+					$("#companyName").html(name + ' - ' + data.email);
+					
 					
 					var success = window.localStorage.getItem("SUCCESS");
 					if(success > 0){
