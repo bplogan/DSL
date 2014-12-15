@@ -90,11 +90,11 @@ function SubmitForm1(){
 		qo = "1";
 	}
 	var qp = encodeURI($("#pCOMMENTS").val());	
-	alert(qp);
+	
 	var ftype = $("input[name='chkType']:checked").val();
 	var pass = $("input[name='radPass']:checked").val();
 	var by = encodeURI($("#txtBy").val());
-	alert(by);
+	
 	$.ajax({
 		type : "POST",
 		url : "http://mycfit.ca/site_dsl/services/add_form.php",
