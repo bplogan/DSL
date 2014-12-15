@@ -6,7 +6,8 @@
 	<title>MYCF</title>
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
 	<link rel="stylesheet" href="css/styles.css" />
-	
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
 	<script src="main.js"></script>
 	<link rel="stylesheet" href="http://www.mycfit.ca/site_dsl/services/mpdfstyletables.css">
 	
@@ -84,7 +85,7 @@
 				data : {'FID' : FID},
 				dataType : "json",
 				success : function(data) {
-		
+					alert("here");
 					showErrorMessage("The form was emailed successfully", $("#err"), 0);
 				},
 				error : function(xhr, desc, err) {
@@ -97,7 +98,7 @@
 		function GoCompany(id,name){
 			window.localStorage.setItem("CID",id);
 			window.localStorage.setItem("CNAME",name);
-			$.mobile.changePage("forms.html");
+			window.location= "forms.html";
 		}
 	</script>
 

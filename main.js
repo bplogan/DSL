@@ -109,7 +109,7 @@ function SubmitForm1(){
 			
 			if(data.result > 0){
 				window.localStorage.setItem("SUCCESS",data.result);
-				$.mobile.changePage("forms.html");
+				window.location= "forms.html";
 			}
 			
 		},
