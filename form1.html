@@ -313,12 +313,12 @@
 	<script>
 	
 		$(document).on("pagebeforeshow","#form1Page",function(){
-		     window.localStorage.setItem("CPAGE",1);
+		    window.localStorage.setItem("CPAGE",1);
 			var name = window.localStorage.getItem("CNAME");
 			$("#CNAME").html(name);
 			$('#btnPrev').buttonMarkup({ icon: "back" });
 			$('#btnPrev').html("Back to forms");
-			
+			GetCompany();
 		
 			
 			
@@ -326,31 +326,54 @@
 		
 	
 	
-	
+		function GetCompany(){
+			var CID = window.localStorage.getItem("CID");
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/get_company.php",
+				async : false,
+				data : {'CID' : CID},
+				dataType : "json",
+				success : function(data) {
+					$("#CCODE").html(data.code);
+					$("#ADATE").html(data.date);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+		}
 		
 		function NextPage(){
 			
 			var page = window.localStorage.getItem("CPAGE");
 			if(ValidatePage(page)){
 				var next = parseInt(page) + 1;
-				$(".page").hide();
 				
-				if(next == 5){
-					if( (($("input[name='crad']:checked").val() == "0") ||  ($("input[name='drad']:checked").val() == "0")) ){
-						next = 5;
-					}else{
-						next = 6;
+				if(next == 16){
+					if(ValidateSubmit()){
+						SubmitForm1();
 					}
-				}
-				
-				$("#p" + next).toggle("slide");
-				window.localStorage.setItem("CPAGE", next);
-				if(next == 15){
-					$("#btnNext").html("Submit");
-					$('#btnNext').buttonMarkup({ icon: "check" });
-				}else if(next == 2){
-					$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
-					$('#btnPrev').html("Previous");
+				}else{
+					$(".page").hide();
+					if(next == 5){
+						if( (($("input[name='crad']:checked").val() == "0") ||  ($("input[name='drad']:checked").val() == "0")) ){
+							next = 5;
+						}else{
+							next = 6;
+						}
+					}
+					
+					$("#p" + next).toggle("slide");
+					window.localStorage.setItem("CPAGE", next);
+					if(next == 15){
+						$("#btnNext").html("Submit");
+						$('#btnNext').buttonMarkup({ icon: "check" });
+					}else if(next == 2){
+						$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
+						$('#btnPrev').html("Previous");
+					}
 				}
 			}
 			
@@ -437,7 +460,7 @@
 		}
 		
 		function BackToForms(){
-			if (("Are you sure you want to leave this form?  Any data entered will be lost.")) {
+			if (confirm("Are you sure you want to leave this form?  Any data entered will be lost.")) {
 				$.mobile.changePage("forms.html");
 			}
 			

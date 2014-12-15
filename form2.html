@@ -319,22 +319,29 @@
 			$("#CNAME").html(name);
 			$('#btnPrev').buttonMarkup({ icon: "back" });
 			$('#btnPrev').html("Back to forms");
+			GetCompany();
 		});	
 		
 		function NextPage(){
 			var page = window.localStorage.getItem("CPAGE");
 			if(ValidatePage(page)){
 				var next = parseInt(page) + 1;
-				$(".page").hide();
-				
-				$("#p" + next).toggle("slide");
-				window.localStorage.setItem("CPAGE", next);
-				if(next == 3){
-					$("#btnNext").html("Submit");
-					$('#btnNext').buttonMarkup({ icon: "check" });
-				}else if(next == 2){
-					$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
-					$('#btnPrev').html("Previous");
+				if(next == 4){
+					if(ValidateSubmit()){
+						SubmitForm1();
+					}
+				}
+				else{
+					$(".page").hide();
+					$("#p" + next).toggle("slide");
+					window.localStorage.setItem("CPAGE", next);
+					if(next == 3){
+						$("#btnNext").html("Submit");
+						$('#btnNext').buttonMarkup({ icon: "check" });
+					}else if(next == 2){
+						$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
+						$('#btnPrev').html("Previous");
+					}
 				}
 			}
 		}	
@@ -451,6 +458,25 @@
 				$.mobile.changePage("forms.html");
 			}
 			
+		}
+		
+		function GetCompany(){
+			var CID = window.localStorage.getItem("CID");
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/get_company.php",
+				async : false,
+				data : {'CID' : CID},
+				dataType : "json",
+				success : function(data) {
+					$("#CCODE").html(data.code);
+					$("#ADATE").html(data.date);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
 		}
 	</script>
 

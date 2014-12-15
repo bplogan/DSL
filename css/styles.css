@@ -1,7 +1,7 @@
 ul{list-style:none}
 [data-role=header]{height:61px !important;border:none !important;}
 [data-role=footer]{position:fixed !important;}
-[data-role=page]{ background-color:#FFFFFF !important;overflow: hidden !important; }
+[data-role=page]{ background-color:#F9F9F9 !important;overflow: hidden !important; }
 
 h6{
 	font-size:24px;
