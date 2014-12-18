@@ -68,9 +68,15 @@ div.space{
 	
 }
 
-.ui-btn-inner {
+.ui-btn {
  white-space: nowrap !important;
  overflow: visible !important;
 }
 
+label{
+	
+ white-space: nowrap !important;
+ overflow: visible !important;
+
+}
 
