@@ -294,7 +294,7 @@
 	<div data-role="footer" data-position="fixed">
     	<div data-role="navbar">
     		<ul>
-    			<li><a id="btnPrev" href="javascript:PrevPage()" data-icon="arrow-l">Previous</a></li>
+    			<li><a id="btnPrev" href="javascript:PrevPage()" data-icon="back">Back</a></li>
     			<li><a id="btnNext" href="javascript:NextPage()" data-icon="arrow-r" data-iconpos="right">Next</a></li>
     		</ul>
     	</div>
@@ -316,15 +316,15 @@
 		    window.localStorage.setItem("CPAGE",1);
 			var name = window.localStorage.getItem("CNAME");
 			$("#CNAME").html(name);
-			$('#btnPrev').buttonMarkup({ icon: "back" });
-			$('#btnPrev').html("Back to forms");
+			
 			GetCompany();
+		});	
 		
+		$(document).on("pageshow","#form1Page",function(){
+		 
 			
 			
 		});	
-		
-	
 	
 		function GetCompany(){
 			var CID = window.localStorage.getItem("CID");
@@ -373,6 +373,7 @@
 					}else if(next == 2){
 						$('#btnPrev').buttonMarkup({ icon: "arrow-l" });
 						$('#btnPrev').html("Previous");
+						
 					}
 				}
 			}
