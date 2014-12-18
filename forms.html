@@ -40,7 +40,7 @@
 	<div class="title">Submitted forms:</div>
 		
 		<ul id="historyList" data-role="listview" data-filter="false" data-inset="true"  data-theme="a"></ul>
-		
+		<div id="message"></div>
 		
 		<div id="err" style="display:none"></div>
 	</div>
@@ -103,7 +103,9 @@
 					var name = window.localStorage.getItem("CNAME");
 					$("#companyName").html(name + ' - ' + data.email);
 					
-					
+					if(data.count <= 0){
+						$("#message").html("There are no forms completed for this company.");
+					}
 					
 				},
 				error : function(xhr, desc, err) {
