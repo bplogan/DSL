@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>MYCF</title>
+	<title>DSL Engineering</title>
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
 	<link rel="stylesheet" href="css/styles.css" />
 	<script src="jquery-1.10.2.min.js"></script>
@@ -78,7 +78,11 @@
 		
 		
 		$(document).on("pageshow","#formPage",function(){
-			
+			var success = window.localStorage.getItem("SUCCESS");
+			if(success > 0){
+				showErrorMessage("Form has been saved and emailed successfully", $("#err"), 3);
+				window.localStorage.setItem("SUCCESS","0");
+			}
 		});	
 		
 		function GetForms(){
@@ -100,11 +104,7 @@
 					$("#companyName").html(name + ' - ' + data.email);
 					
 					
-					var success = window.localStorage.getItem("SUCCESS");
-					if(success > 0){
-						showErrorMessage("Form has been saved and emailed successfully", $("#err"), 0);
-						window.localStorage.setItem("SUCCESS","0");
-					}
+					
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);

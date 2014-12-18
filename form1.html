@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>MYCF</title>
+	<title>DSL Engineering</title>
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
 	<link rel="stylesheet" href="css/styles.css" />
 	
@@ -442,16 +442,23 @@
 		}
 		
 		function ValidateSubmit(){
+			var msg = "";
 			var bReturn = true;
 			if(!$("input[name='chkType']:checked").val()){
-				msg = "Please select a Standard (47.1 or 47.2)";
+				msg = "Please select a Standard (47.1 or 47.2) <br />";
 				bReturn = false;
-			}else if(!$("input[name='radPass']:checked").val()){
-				msg = "Please select whether the requirements of the pertinent standards have or have not been met";
-			}else if(!$("input[name='oYES']:checked").val()){
-				msg = "This report must be reviewed by the retained engineer of the subject company (q.o.)"	;
-			}else if(!$("#txtBy").val() ){
-				msg = "Please enter a name in the 'Completed by' box";
+			}
+			if(!$("input[name='radPass']:checked").val()){
+				msg = "Please select whether the requirements of the pertinent standards have or have not been met <br />";
+				bReturn = false;
+			}
+			if(!$("input[name='oYES']:checked").val()){
+				msg = "This report must be reviewed by the retained engineer of the subject company (q.o.) <br />"	;
+				bReturn = false;
+			}
+			if(!$("#txtBy").val() ){
+				msg = "Please enter a name in the 'Completed by' box <br />";
+				bReturn = false;
 			}
 			
 			if(bReturn == false){

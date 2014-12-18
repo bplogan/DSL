@@ -26,6 +26,7 @@ function showErrorMessage(message, $container, delay) {
 function SubmitForm1(){
 	var CID = window.localStorage.getItem("CID");
 	var aSMAW = "0";
+	$("#btnNext").html("Sending..");
 	if ($("#aSMAW").is(':checked')) {
 		aSMAW = 1;
 	}
