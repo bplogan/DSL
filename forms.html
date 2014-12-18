@@ -80,7 +80,7 @@
 		$(document).on("pageshow","#formPage",function(){
 			var success = window.localStorage.getItem("SUCCESS");
 			if(success > 0){
-				showErrorMessage("Form has been saved and emailed successfully", $("#err"), 3);
+				showErrorMessage("Form has been saved and emailed successfully", $("#err"), 3000);
 				window.localStorage.setItem("SUCCESS","0");
 			}
 		});	
