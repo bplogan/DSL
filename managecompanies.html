@@ -14,44 +14,28 @@
 
 <body>
 
-<div id="formPage" data-role="page" data-theme="a">
+<div id="manageCompanyPage" data-role="page" data-theme="a">
 
 	<div data-role="header" data-position="fixed" data-theme="a">
     		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
     		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext" style="height:35px;width:35px">Menu</a>
     		
+    		
       	</div>
       	<img src="images/logo_sm.png" style="float:right" />
-      	<h6 style="font-size:24px;color#06234B">Forms</h6>
-      	
+      	<h6 style="font-size:24px;color#06234B">Manage Companies</h6>
     </div>
 
     <div data-role="content" >    
-		<div class="title">Select a form for:</div>
-		<div class="title" id="companyName"></div>
-		<ul id="formList" data-role="listview" data-filter="true" data-inset="true"  data-theme="a">
-			
-			<li><a href="formcompanyaudit.html">Compmany Audit Form</a></li>
-		</ul>
-		
-		
-		<div style="height:20px"></div>
-	<div class="title">Submitted forms:</div>
-		
-		<ul id="historyList" data-role="listview" data-filter="false" data-inset="true"  data-theme="a"></ul>
-		<div id="message"></div>
-		
+		<div class="title">Select a Company</div>
+		<ul id="mcompanyList" data-role="listview" data-filter="true" data-inset="true"  data-theme="a" data-icon="edit"></ul>
 		<div id="err" style="display:none"></div>
 	</div>
-	
-	
-	
-	
-	
-	<div data-role="footer" data-position="fixed" >
-     <div data-role="navbar">
+
+	<div data-role="footer" data-position="fixed">
+     	<div data-role="navbar">
     		<ul>
-    			<li><a id="btnPrev" href="company.html" data-icon="back">Back to Companies</a></li>
+    			<li><a id="btnAdd" href="javascript:NewCompany()" data-icon="plus">New Company</a></li>
     			
     		</ul>
     	</div>
@@ -69,56 +53,41 @@
 
 	<script>
 	
-		$(document).on("pagebeforeshow","#formPage",function(){
-			
-			
-			GetForms();
+		$(document).on("pagebeforeshow","#manageCompanyPage",function(){
+			 GetCompanies();
 		});	
-		
-		
-		$(document).on("pageshow","#formPage",function(){
-			var success = window.localStorage.getItem("SUCCESS");
-			if(success > 0){
-				showErrorMessage("Form has been saved and emailed successfully", $("#err"), 3000);
-				window.localStorage.setItem("SUCCESS","0");
-			}
-		});	
-		
-		function GetForms(){
 			
-			var CID = window.localStorage.getItem("CID");
+		function GetCompanies(){
 			
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_forms.php",
+				url : "http://mycfit.ca/site_dsl/services/get_companies.php?manage=1",
 				async : false,
-				data : {'CID' : CID},
+				data : {},
 				dataType : "json",
 				success : function(data) {
-					
-					$("#historyList").empty().append(data.result);
-					$('#historyList').listview('refresh');
-					
-					var name = window.localStorage.getItem("CNAME");
-					$("#companyName").html(name + ' - ' + data.email);
-					
-					if(data.count <= 0){
-						$("#message").html("There are no forms completed for this company.");
-					}
-					
+		
+					$("#mcompanyList").empty().append(data.result);
+					$('#mcompanyList').listview('refresh');
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
 					
 				}
 			});
-		}
-		
-		function GoForm(id){
-			window.localStorage.setItem("FRID",id);
-			window.location= "review.html";
 		}	
 		
+		function EditCompany(id,name){
+			window.localStorage.setItem("TYPE","EDIT");
+			window.localStorage.setItem("CID", id);
+			window.location = 'editcompany.html';
+		}
+		
+		function NewCompany(){
+			window.localStorage.setItem("TYPE","ADD");
+			window.localStorage.setItem("CID", -1);
+			window.location = 'editcompany.html';
+		}
 	</script>
 
 </div>
