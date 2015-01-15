@@ -49,6 +49,34 @@
 				<input type="text" id="tcontact" name="tcontact" required>
 			</fieldset>
 			
+			<fieldset>
+				<label for="taddress">Address:</label>
+				<input type="text" id="taddress" name="taddress" required>
+			</fieldset>
+			
+			<fieldset>
+				<label for="tcity">City:</label>
+				<input type="text" id="tcity" name="tcity" required>
+			</fieldset>
+			
+			<fieldset>
+				<label for="ddlProvince">Province:</label>
+				<select id="dllProvince">
+					<option value="AB">Alberta</option>
+					<option value="BC">British Columbia</option>
+					<option value="MB">Manitoba</option>
+					<option value="NB">New Bunswick</option>
+					<option value="NL">Newfoundland & Labrador</option>
+					<option value="NS">Nova Scotia</option>
+					<option value="NU">Nunavut</option>
+					<option value="ON">Ontario</option>
+					<option value="PE">Prince Edward Island</option>
+					<option value="QC">Quebec</option>
+					<option value="SK">Saskatchewan</option>
+					<option value="YT">Yukon</option>
+				</select>
+			</fieldset>
+			
 			<button type="submit" id="btnc"></button>
 		</form>
 		
@@ -108,6 +136,9 @@
 					$("#tname").val(data.name);
 					$("#temail").val(data.email);
 					$("#tcontact").val(data.contact);
+					$("#taddress").val(data.address);
+					$("#tcity").val(data.city);
+					$('#ddlProvince').val(data.prov).selectmenu('refresh');
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
@@ -127,6 +158,9 @@
 			var code = $("#tcode").val();
 			var email = $("#temail").val();
 			var contact = $("#tcontact").val();
+			var address = $("#taddress").val();
+			var city = $("#tcity").val();
+			var prov = $("#ddlProvince").val();
 			var type = window.localStorage.getItem("TYPE");
 			var cid = window.localStorage.getItem("CID");
 			
@@ -146,13 +180,21 @@
 				bGo = false;
 				msg = "Please enter a company contact.";
 			}
+			if(address == ""){
+				bGo = false;
+				msg = "Please enter a company address.";
+			}
+			if(city == ""){
+				bGo = false;
+				msg = "Please enter a company city.";
+			}
 			if(bGo){
 				
 				$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_dsl/services/edit_company.php?ID=" + cid,
 					async : false,
-					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact},
+					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact, 'CITY' : city, 'ADDRESS' : address, 'PROV' : prov},
 					dataType : "json",
 					success : function(data) {
 						
