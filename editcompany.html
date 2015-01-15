@@ -61,7 +61,7 @@
 			
 			<fieldset>
 				<label for="ddlProvince">Province:</label>
-				<select id="dllProvince">
+				<select id="ddlProvince">
 					<option value="AB">Alberta</option>
 					<option value="BC">British Columbia</option>
 					<option value="MB">Manitoba</option>
@@ -189,7 +189,7 @@
 				msg = "Please enter a company city.";
 			}
 			if(bGo){
-				
+				alert(prov);
 				$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_dsl/services/edit_company.php?ID=" + cid,
@@ -197,7 +197,7 @@
 					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact, 'CITY' : city, 'ADDRESS' : address, 'PROV' : prov},
 					dataType : "json",
 					success : function(data) {
-						
+						alert(data.test);
 						if(type == "EDIT"){
 							showErrorMessage("Company updated successfully!", $("#err"), 0);
 						}else{
