@@ -192,12 +192,12 @@
 				
 				$.ajax({
 					type : "POST",
-					url : "http://mycfit.ca/site_dsl/services/edit_company.php?ID=" + cid,
+					url : "http://mycfit.ca/site_dsl/services/edit_company.php?ID=" + cid + "&PROV=" + prov,
 					async : false,
-					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact, 'CITY' : city, 'ADDRESS' : address, 'PROV' : prov},
+					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact, 'CITY' : city, 'ADDRESS' : address},
 					dataType : "json",
 					success : function(data) {
-						
+						alert(data.test);
 						if(type == "EDIT"){
 							showErrorMessage("Company updated successfully!", $("#err"), 0);
 						}else{
