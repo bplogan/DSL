@@ -77,9 +77,28 @@
 		}	
 		
 		function GoCompany(id,name){
-			window.localStorage.setItem("CID",id);
-			window.localStorage.setItem("CNAME",name);
-			window.location= "forms.html";
+			
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/sync.php?id=" + id,
+				async : false,
+				data : {},
+				dataType : "json",
+				success : function(data) {
+		
+					window.localStorage.setItem("CID",id);
+					window.localStorage.setItem("CNAME",name);
+					window.location= "forms.html";
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+			
+			
+			
+			
 		}
 	</script>
 

@@ -1,0 +1,725 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>DSL Engineering</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="jquery.signaturepad.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="jquery.signaturepad.css">
+	<script src="main.js"></script>
+	
+</head>
+
+<body>
+
+<div id="formPersonnelPage" data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed" data-theme="a">
+    	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext" style="height:35px;width:35px">Menu</a>
+    		<a href="javascript:BackToForms()" data-role="button" data-icon="delete" data-iconpos="notext" style="height:35px;width:35px">Back</a>
+      	</div>
+      	<img src="images/logo_sm.png" style="float:right" />
+      		<h6 style="font-size:24px;color#06234B">DSL Engineering</h6>
+    </div>
+
+    <div data-role="content" >    
+		
+		<div id="formcontent">
+		<form class="" id="frmPersonnel" data-mini="true">
+		<div class="titlec">LIST OF PERSONNEL - <span id="CNAME"></span></div>
+		<table align="center" cellspacing="0" width="100%">
+			<tr>
+				<td class="headtabletd" >Company Code</td>
+				
+				<td class="headtabletd" >Standard</td>
+			
+				<td class="headtabletd">Audit Date</td>
+			</tr>
+			<tr>
+				<td id="CCODE"  class="headtablesubtd" >FTSF11</td>
+				
+				<td class="headtablesubtd">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="padding:0;margin:0">
+					<input type="radio" name="chkType" id="chk471" value="0"  />
+					<label for="chk471">47.1</label>
+	
+					<input type="radio" name="chkType" id="chk472" value="1"  />
+					<label for="chk472">47.2</label>
+					
+					<input type="radio" name="chkType" id="chk553" value="1"  />
+					<label for="chk553">W55.3</label>
+					
+					<input type="radio" name="chkType" id="chk186" value="1"  />
+					<label for="chk186">W186</label>
+	
+					
+					</fieldset>
+				</td>
+				
+				<td id="ADATE" class="headtablesubtd">2014-12-10</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td>
+					<input  type="checkbox" id="chkIAID" />
+					<label for="chkIAID" >Initial Application in Division </label>
+				</td>
+				<td>
+					<input type="text" id="txtDivision" />
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<input  type="checkbox" id="chkDIVCHANGE" />
+					<label for="chkDIVCHANGE" >Division change from </label>
+				</td>
+				<td>
+					<input type="text" id="txtChangeFrom" />
+				</td>
+				<td>&nbsp;to </td>
+				<td>
+					<input type="text" id="txtChangeTo" />
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<input  type="checkbox" id="chkUPDATE" />
+					<label for="chkUPDATE" >Update of information </label>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<input  type="checkbox" id="chkREIN" />
+					<label for="chkREIN" >File Reinstatement </label>
+				</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td><u>NOTE</u>: ENTER DIVISION NO. IN SPACE PROVIDED ABOVE IF THIS FORM APPLIES TO CSA Standard S473-04 - Steel Structures</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="chkAPPLIES" />
+					<label for="chkAPPLIES" >If this form applies to CSA W47.1, indicate if it is to include the Requirements of CSA Standard S473-04 - Steel Structures</label>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><b>LIST OF PERSONNEL AT THE FACILITY TO WHICH CERTIFICATION APPLIES</b></td>
+			</tr>
+		</table>
+		
+		<table cellspacing="0">
+			<tr>
+				<td class="question">Company Name: </td><td><input type="text" id="txtCompanyName" /></td>
+			</tr>
+			<tr>
+				<td class="question">Address:</td>
+				<td><input type="text" id="txtAddress" /></td>
+				<td class="question">City: </td>
+				<td><input type="text" id="txtCity" /></td>
+				<td class="question">Province:</td>
+				<td><input type="text" id="txtProvince" style="width:50px" /></td>
+			</tr>
+			<tr>
+				<td class="question">Phone: </td>
+				<td><input type="text" id="txtPhone" /></td>
+				<td class="question">Fax: </td>
+				<td><input type="text" id="txtFax" /></td>
+			</tr>
+		</table>
+
+
+		
+		
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr style="background-color:#EBEBEB">
+		<td class="letter" style="width:20px" >1. </td>
+		<td class="question" style="width:200px" >CEO: </td>
+		<td ><input type="text" id="txtCEO" /></td>
+		<td class="question" style="width:35px">Email:</td>
+		<td ><input type="text" id="txtCEO" /></td>
+	</tr>
+	<tr>
+		<td class="letter" style="width:20px">2. </td>
+		<td class="text regpd" style="width:200px"><b>a.</b> Other Management:</td>
+		<td ><input type="text" id="txtOM1" /></td>
+		<td class="question" style="width:35px">Email:</td>
+		<td ><input type="text" id="txtOM1Email" /></td>
+	</tr>
+	<tr>
+		<td class="letter" style="width:20px"></td>
+		<td class="text regpd" style="width:200px"><b>b.</b> Other Management:</td>
+		<td ><input type="text" id="txtOM2" /></td>
+		<td class="question" style="width:35px">Email:</td>
+		<td ><input type="text" id="txtOM2Email" /></td>
+	</tr>
+
+	<tr style="background-color:#EBEBEB">
+		<td class="letter" style="width:20px">3. </td>
+		<td class="question" style="width:200px">Certification Contact:</td>
+		<td ><input type="text" id="txtCC" /></td>
+		<td class="tquestion" style="width:35px">Email:</td>
+		<td ><input type="text" id="txtCCEmail" /></td>
+	</tr>
+
+
+	
+	<tr style="background-color:#EBEBEB">
+		<td class="letter" style="width:20px"></td>
+		<td class="question" style="width:60px">Cell No:</td>
+		<td ><input type="text" id="txtCCCell"  /></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%" style="background-color:#EBEBEB">		
+	<tr>
+		<td style="width:20px"></td>
+		<td class="question" style="width:300px">Location of Certification Contact:</td>
+		<td style="width:130px">
+			<label for="chkCCSame" style="width:100px" >Same as above</label>
+			<input type="checkbox" id="chkCCSame" style="width:100px" />
+		</td>
+		<td class="question" style="text-align:left">&nbsp; or:</td>
+		
+	</tr>
+</table>	
+<table cellspacing="0" cellpadding="0" width="100%" style="background-color:#EBEBEB">		
+	<tr>
+		<td style="width:20px"></td>
+		<td class="question" style="width:125px">Business Address:</td>
+		<td><input type="text" id="txtCCAddress" /></td>
+		<td class="question">City: </td>
+		<td><input type="text" id="txtCCCity" /></td>
+		<td class="question">Province:</td>
+		<td><input type="text" id="txtCCProvince" style="width:50px" /></td>
+	</tr>
+	<tr>
+		<td style="width:20px"></td>
+		<td class="question" style="width:125px">Country:</td>
+		<td><input type="text" id="txtCCCountry" /></td>
+		<td class="question">Postal Code: </td>
+		<td><input type="text" id="txtCCPostalCode" /></td>
+		
+	</tr>
+	<tr>
+		<td style="width:20px"></td>
+		<td class="question" style="width:125px">Phone:</td>
+		<td><input type="text" id="txtCCPhone" /></td>
+		<td class="question">Fax: </td>
+		<td><input type="text" id="txtCCFax" /></td>
+		
+	</tr>
+</table>	
+
+		
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="letter" style="width:20px" valign="top">4. </td>
+		<td class="letter" style="width:15px" valign="top">a.</td>
+		<td class="question" colspan="6"><b>For CSA Standard W47.1  and W55.3  only, list the designated Welding ENgineers.  Provide the email address for engineers employed full-time by the company.</b>:</td>
+		
+	</tr>
+	<tr>
+		<td class="" style="width:20px"></td>
+		<td class="letter">&nbsp;i.</td>
+		<td class="tquestion" style="width:110px">Welding Engineer: </td>
+		<td><input type="text" id="txtWE1" /></td>
+		<td class="tquestion">Email: </td>
+		<td><input type="text" id="txtWE1Email" /></td>
+		<td>
+			<label for="chkWE1Employed">Employed</label>
+			<input type="checkbox" id="chkWE1Employed" />
+		</td>
+		<td>
+			<label for="chkWE1Retained">Retained</label>
+			<input type="checkbox" id="chkWE1Retained" />
+		</td>
+		
+		
+	</tr>
+	<tr>
+		<td class="" style="width:20px"></td>
+		<td class="letter">&nbsp;ii.</td>
+		<td class="tquestion" style="width:110px">Welding Engineer: </td>
+		<td><input type="text" id="txtWE2" /></td>
+		<td class="tquestion">Email: </td>
+		<td><input type="text" id="txtWE2Email" /></td>
+		<td>
+			<label for="chkWE2Employed">Employed</label>
+			<input type="checkbox" id="chkWE2Employed" />
+		</td>
+		<td>
+			<label for="chkWE2Retained">Retained</label>
+			<input type="checkbox" id="chkWE2Retained" />
+		</td>
+		
+		
+	</tr>
+	<tr>
+		<td class="question" style="width:20px" ></td>
+		<td class="letter">b.</td>
+		<td class="question" colspan="6"><b>For CSA Standards W47.2 and W186 only, list engineers designated for Welding Design and/or Welding Procedures and Practice. Provide the email address for engineers employed fill-time bu the company.</b>:</td>
+		
+	</tr>
+	<tr>
+		<td class="" style="width:20px"></td>
+		<td class="letter">&nbsp;i.</td>
+		<td class="tquestion" style="width:110px">Welding Design: </td>
+		<td><input type="text" id="txtWD1" /></td>
+		<td class="question">Email: </td>
+		<td><input type="text" id="txtWD1Email" /></td>
+		<td>
+			<label for="chkWD1Employed">Employed</label>
+			<input type="checkbox" id="chkWD1Employed" />
+		</td>
+		<td>
+			<label for="chkWD1Retained">Retained</label>
+			<input type="checkbox" id="chkWD1Retained" />
+		</td>
+		
+		
+	</tr>
+	<tr>
+		<td class="" style="width:20px"></td>
+		<td class="letter">&nbsp;ii.</td>
+		<td class="tquestion" style="width:110px">Welding Procedures & Practice: </td>
+		<td><input type="text" id="txtWPP" /></td>
+		<td class="question">Email: </td>
+		<td><input type="text" id="txtWPPEmail" /></td>
+		<td>
+			<label for="chkWPPEmployed">Employed</label>
+			<input type="checkbox" id="chkWPPEmployed" />
+		</td>
+		<td>
+			<label for="chkWPPRetained">Retained</label>
+			<input type="checkbox" id="chkWPPRetained" />
+		</td>
+		
+		
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr style="background-color:#EBEBEB" >
+		<td class="letter" style="width:20px" >5. </td>
+		<td class="letter" style="width:15px" >a.</td>
+		<td class="question">Welding Supervisor:</td>
+		<td><input type="text" id="txtWS1" /></td>
+		<td class="text regpd">Email/Cell:</td>
+		<td><input type="text" id="txtWS1Email" /></td>
+		
+	</tr>
+	<tr style="background-color:#EBEBEB" >
+		<td class="" style="width:20px" >&nbsp;</td>
+		<td class="letter" style="width:15px" >b.</td>
+		<td class="question">Welding Supervisor:</td>
+		<td><input type="text" id="txtWS2" /></td>
+		<td class="text regpd">Email/Cell:</td>
+		<td><input type="text" id="txtWS2Email" /></td>
+		
+	</tr>
+	<tr style="background-color:#EBEBEB" >
+		<td class="" style="width:20px" >&nbsp;</td>
+		<td class="letter" style="width:15px" >c.</td>
+		<td class="question">Welding Supervisor:</td>
+		<td><input type="text" id="txtWS3" /></td>
+		<td class="text regpd">Email/Cell:</td>
+		<td><input type="text" id="txtWS3Email" /></td>
+		
+	</tr>
+	<tr style="background-color:#EBEBEB" >
+		<td class="" style="width:20px" >&nbsp;</td>
+		<td class="letter" style="width:15px" >d.</td>
+		<td class="question">Welding Supervisor:</td>
+		<td><input type="text" id="txtWS4" /></td>
+		<td class="text regpd">Email/Cell:</td>
+		<td><input type="text" id="txtWS4Email" /></td>
+		
+	</tr>
+
+	<tr>
+		<td class="letter" style="width:20px" >6. </td>
+			<td>&nbsp;</td>
+		<td class="text regpd" style="width:210px">Accounts Officer:</td>
+		<td><input type="text" id="txtAO" /></td>
+		<td class="question" style="width:50px">Email:</td>
+		<td><input type="text" id="txtAOEmail" /></td>
+	</tr>
+	<tr style="background-color:#EBEBEB">
+		<td class="letter" style="width:20px" >7. </td>
+		<td class="question" colspan="5"><b>For CSA Standard W47.2 only:</b></td>
+	</tr>
+	<tr style="background-color:#EBEBEB">
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td class="question">Quality Control Officer:</td>
+		<td><input type="text" id="txtQCO" /></td>
+		<td class="tequestion" style="width:50px">Email:</td>
+		<td><input type="text" id="txtQCOEmail" /></td>
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="question" ><b>PLEASE NOTE: ANY PERSONNEL CHANGES IN AREAS 1 TO 7 ABOVE REQUIRE A NEW FORM FULLY COMPLETED. PLEASE MAIL OR FAX TO THE CWB AND RETAIN A COPY FOR YOUR FILE.</b></td>
+	</tr>
+	<tr>
+		<td class="question" style="border-top:1px solid #000"><b>Complete this section only if the CEO&#44;s designate is to be appointed.</b></td>
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td class="question" style="width:40%">As Cheif Executive Officer, I designate:</td>
+		<td class="" style="width:60%" ><input type="text" id="txtDesignate" /></td>
+	</tr>
+	<tr>
+		<td class="question" colspan="2">to act on my behalf concering all matters related to the certification of this company.</td>
+	</tr>
+		
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td style="width:50px">&nbsp;</td>
+		<td>
+			<table cellspacing="0" cellpadding="1" width="100%">
+				<tr>
+					<td class="text-medium" style="text-align:center;border:1px solid #000;width:50px" rowspan="2">DATE</td>
+					<td class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
+				</tr>
+				<tr>
+					<td class="text-medium" style="text-align:center;border-right:1px solid #000;border-bottom:1px solid #000">MM/DD/YYY</td>
+				</tr>
+			</table>
+		</td>
+		<td style="width:50px"></td>
+		<td>
+			<table>
+				<tr>
+					<td style="text-align:center;width:350px;background-color:#EBEBEB;height:75px" onclick="GetSig1()">
+						
+					</td>
+					
+				</tr>
+				<tr>
+					
+					<td class="text" style="text-align:center;border-top:1px solid #000">Signature of Cheif Executive Officer</td>
+				</tr>
+			</table>
+		</td>
+	<tr>
+	</table>			
+					
+
+<div style="height:10px"></div>
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td colspan="2" class="question" style="border-top:2px solid #000">The Certification Contact identified above as been designated as having responsibility for ensuring that the requirements for certification are implemented and maintained. 
+		I also designate the other personnel listed above and ensure that they have been granted such authority as will enable them to properly and freely discharge their responsibilities under the Standard specified above.
+		</td>
+	</tr>
+</table>
+	<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td style="width:50px">&nbsp;</td>
+		<td>
+			<table cellspacing="0" cellpadding="1" width="100%">
+				<tr>
+					<td class="text-medium" style="text-align:center;border:1px solid #000;width:50px" rowspan="2">DATE</td>
+					<td class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
+				</tr>
+				<tr>
+					<td class="text-medium" style="text-align:center;border-right:1px solid #000;border-bottom:1px solid #000">MM/DD/YYY</td>
+				</tr>
+			</table>
+		</td>
+		<td style="width:50px"></td>
+		<td>
+			<table>
+				<tr>
+					<td style="text-align:center;width:350px">
+						<a href="#sig2" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">Delete page...</a>
+					</td>
+					
+				</tr>
+				<tr>
+					
+					<td class="text" style="text-align:center;border-top:1px solid #000">Signature of Cheif Executive Officer or Designate</td>
+				</tr>
+			</table>
+		</td>
+	<tr>
+	</table>			
+		
+		
+		
+		
+	
+		<button type="submit">GIVER</button>
+		
+	</form>
+	</div>
+	
+		
+		
+		
+		<div id="err" style="display:none"></div>
+		
+		
+		
+		<div  id="signature" style="display:none">
+			<form class="sigPad" id="frmSig" data-mini="true">
+				
+				
+				<div style="text-align:center">
+		   		<canvas class="pad" style="width:350px" height="150px"></canvas>
+		      	<input type="hidden" name="output" id="output" class="output">
+		      </div>
+		     
+		      	<div style="text-align:center">
+		      		<table width="90%" align="center">
+		      			<tr>
+		      				<td colspan="2" class="clearButton"><a href="#clear" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Reset</a></td>
+		      			</tr>
+		      			<tr>
+		      				<td><a href="#" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Cancel</a></td>
+		      				<td><a href="#" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Accept</a></td>
+		      			</tr>
+		      		</table>
+		       
+		        
+				</div>
+		    </div>
+		
+		
+
+		
+	
+
+
+
+
+
+
+	<div data-role="footer" data-position="fixed">
+		
+    	<div data-role="navbar">
+    		<ul>
+    			<li><a id="btnPrev" href="javascript:BackToForms()" data-icon="back">Back</a></li>
+    			<li><a href="javascript:Submit()" id="btnNext"   data-icon="check" data-iconpos="right">Submit</a></li>
+    		</ul>
+    	</div>
+   	
+	</div>
+    
+    
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="a">
+		
+		<canvas class="pad" width="350px" height="75px"></canvas>
+		<input type="hidden" name="output" id="output" class="output">
+	   	<ul data-role="listview" data-filter="false" data-theme="a" data-inset="false">
+	   		<li><a href="company.html"  data-rel="close" class="ui-btn ui-shadow ui-btn-a ui-icon-home ui-btn-icon-right" data-ajax="false">Companies</a></li>
+	   		<li><a href="settings.html"  data-rel="close" class="ui-btn ui-shadow ui-btn-a ui-icon-gear ui-btn-icon-right" data-ajax="false">Settings</a></li>
+	    </ul>
+	</div><!-- /panel -->
+
+	<script>
+	
+		$(document).on("pagebeforeshow","#formPersonnelPage",function(){
+		    window.localStorage.setItem("CPAGE",1);
+			var name = window.localStorage.getItem("CNAME");
+			$("#CNAME").html(name);
+			$('#btnPrev').buttonMarkup({ icon: "back" });
+			$('#btnPrev').html("Back to forms");
+			GetCompany();
+			
+			 
+   
+      	$('.sigPad').signaturePad({drawOnly:true});
+  
+  
+			
+		});	
+		
+		
+		
+	
+	$('#frmPersonnel').submit(function (e) {
+	    e.preventDefault();
+	    
+	    SubmitPersonnelForm();
+	});
+				
+	function GetSig1(){
+		
+		$("#formcontent").hide();
+		$("#signature").show();
+		
+	}
+		
+	function SubmitPersonnelForm(){
+		var sig = $("#output").val();
+		$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
+				async : false,
+				data : {'output' : sig},
+				dataType : "json",
+				success : function(data) {
+					alert(data.result);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+	}
+	
+	
+		function ValidatePage(page){
+			var bReturn = false;
+			if(page == 1 || page == 2 || page == 5 || page == 16 || page == 15){
+				bReturn = true;
+			}else {
+				
+				var letter ='abcdefghijklmnopqrstuvwxyz'[page - 1];
+				
+				if($("input[name='" + letter + "rad']:checked").val()){
+					bReturn = true;
+				}else{
+					bReturn = false;
+				}
+				
+			}
+			return bReturn;
+		}
+		
+		function ValidateSubmit(){
+			var bReturn = true;
+			var msg = "";
+						
+			if(!$("input[name='crad']:checked").val()){
+				msg += "Please answer question c.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='drad']:checked").val()){
+				msg += "Please answer question d.<br />";
+				bReturn = false;
+			}
+			if( (($("input[name='crad']:checked").val() == "0") ||  ($("input[name='drad']:checked").val() == "0")) && ($("#eNOTES").val() == "")){
+					msg += "Please specify the reason(s) for answering 'NO' to questions c. and/or d. in the box provided in question e. <br />";
+					bReturn = false;
+				}
+			
+			if(!$("input[name='frad']:checked").val()){
+				msg += "Please answer question f.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='grad']:checked").val()){
+				msg += "Please answer question g.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='hrad']:checked").val()){
+				msg += "Please answer question h.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='irad']:checked").val()){
+				msg += "Please answer question i.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='jrad']:checked").val()){
+				msg += "Please answer question j.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='krad']:checked").val()){
+				msg += "Please answer question k.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='lrad']:checked").val()){
+				msg += "Please answer question l.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='mrad']:checked").val()){
+				msg += "Please answer question m.<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='nrad']:checked").val()){
+				msg += "Please answer question n.<br />";
+				bReturn = false;
+			}
+						
+			if(!$("input[name='chkType']:checked").val()){
+				msg += "Please select a Standard (47.1 or 47.2)<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='radPass']:checked").val()){
+				msg += "Please select whether the requirements of the pertinent standards have or have not been met<br />";
+				bReturn = false;
+			}
+			if(!$("input[name='oYES']:checked").val()){
+				msg += "This report must be reviewed by the retained engineer of the subject company (q.o.)<br />"	;
+				bReturn = false;
+			}
+			if(!$("#txtBy").val() ){
+				msg += "Please enter a name in the 'Completed by' box";
+				bReturn = false;
+			}
+			
+			if(bReturn == false){
+				showErrorMessage(msg, $("#errmsg"), 0);
+			}
+			return bReturn;
+		}
+		
+		function Submit(){
+			
+			if(ValidateSubmit()){
+				SubmitForm1();
+			}
+		}
+		
+		function BackToForms(){
+			if (confirm("Are you sure you want to leave this form?  Any data entered will be lost.")) {
+				window.location= "forms.html";
+			}
+			
+		}
+		
+		function GetCompany(){
+			var CID = window.localStorage.getItem("CID");
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/get_company.php",
+				async : false,
+				data : {'CID' : CID},
+				dataType : "json",
+				success : function(data) {
+					$("#CCODE").html(data.code);
+					$("#ADATE").html(data.date);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+		}
+		
+		
+	</script>
+
+</div>
+
+</body>
+</html>
