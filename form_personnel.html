@@ -536,47 +536,35 @@
 	    </ul>
 	</div><!-- /panel -->
 
-	<script>
+<script>
 	
-		$(document).on("pagebeforeshow","#formPersonnelPage",function(){
-		    window.localStorage.setItem("CPAGE",1);
-			var name = window.localStorage.getItem("CNAME");
-			$("#CNAME").html(name);
-			$('#btnPrev').buttonMarkup({ icon: "back" });
-			$('#btnPrev').html("Back to forms");
-			GetCompany();
-			
-			 
-   
-      	$('.sigPad').signaturePad({drawOnly:true});
-  
-  
-			
-		});	
+	$(document).on("pagebeforeshow","#formPersonnelPage",function(){
+	    window.localStorage.setItem("CPAGE",1);
+		var name = window.localStorage.getItem("CNAME");
+		$("#CNAME").html(name);
+		$('#btnPrev').buttonMarkup({ icon: "back" });
+		$('#btnPrev').html("Back to forms");
+		GetCompany();
+		$('.sigPad').signaturePad({drawOnly:true});
+	});	
 		
-		
-		
-	
 	$('#frmPersonnel').submit(function (e) {
 	    e.preventDefault();
-	    
 	    SubmitPersonnelForm();
 	});
 	
 	$('#frmSig').submit(function (e) {
 	    e.preventDefault();
-	    
 	    AddSignature();
 	});
 				
 	function GetSig1(){
-		
 		$("#formcontent").hide();
 		$("#signature").show();
 		window.localStorage.setItem("SIG", "1");
 	}
-		function GetSig2(){
-		
+	
+	function GetSig2(){
 		$("#formcontent").hide();
 		$("#signature").show();
 		window.localStorage.setItem("SIG", "2");
