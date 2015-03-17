@@ -408,7 +408,7 @@
 		<td>
 			<table>
 				<tr>
-					<td style="text-align:center;width:350px;background-color:#EBEBEB;height:75px" onclick="GetSig1()">
+					<td id="sig1" style="text-align:center;width:350px;background-color:#EBEBEB;height:150px" onclick="GetSig1()">
 						
 					</td>
 					
@@ -449,8 +449,8 @@
 		<td>
 			<table>
 				<tr>
-					<td style="text-align:center;width:350px">
-						<a href="#sig2" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">Delete page...</a>
+					<td id="sig2" style="text-align:center;width:350px;background-color:#EBEBEB;height:150px" onclick="GetSig2()">
+						
 					</td>
 					
 				</tr>
@@ -494,13 +494,14 @@
 		      				<td colspan="2" class="clearButton"><a href="#clear" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Reset</a></td>
 		      			</tr>
 		      			<tr>
-		      				<td><a href="#" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Cancel</a></td>
-		      				<td><a href="#" class="ui-btn ui-corner-all ui-shadow  ui-btn-a" data-rel="back">Accept</a></td>
+		      				<td><button type="button" onclick="CancelSignature()">Cancel</button></td>
+		      				<td><button type="submit">Accept</button></td>
 		      			</tr>
 		      		</table>
 		       
 		        
 				</div>
+			</form>
 		    </div>
 		
 		
@@ -561,11 +562,60 @@
 	    
 	    SubmitPersonnelForm();
 	});
+	
+	$('#frmSig').submit(function (e) {
+	    e.preventDefault();
+	    
+	    AddSignature();
+	});
 				
 	function GetSig1(){
 		
 		$("#formcontent").hide();
 		$("#signature").show();
+		window.localStorage.setItem("SIG", "1");
+	}
+		function GetSig2(){
+		
+		$("#formcontent").hide();
+		$("#signature").show();
+		window.localStorage.setItem("SIG", "2");
+	}
+	
+	function CancelSignature(){
+		$("#formcontent").show();
+		$("#signature").hide();
+	}
+		
+	function AddSignature(){
+		var SIG = window.localStorage.getItem("SIG");
+		var CID = window.localStorage.getItem("CID");
+		var output = $("#output").val();
+		
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/signature.php",
+				async : false,
+				data : {'output' : output, 'CID' : CID, 'SIG' : SIG},
+				dataType : "json",
+				success : function(data) {
+					var sig = data.sig;
+					alert(sig);
+					if(sig == "1"){
+						$("#sig1").html(data.filename);
+					}else{
+						$("#sig2").html(data.filename);
+					}
+					
+					
+					$("#formcontent").show();
+					$("#signature").hide();
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
 		
 	}
 		
