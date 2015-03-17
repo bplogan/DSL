@@ -149,7 +149,7 @@
 		<td class="question" style="width:200px" >CEO: </td>
 		<td ><input type="text" id="txtCEO" /></td>
 		<td class="question" style="width:35px">Email:</td>
-		<td ><input type="text" id="txtCEO" /></td>
+		<td ><input type="text" id="txtCEOEmail" /></td>
 	</tr>
 	<tr>
 		<td class="letter" style="width:20px">2. </td>
@@ -467,7 +467,7 @@
 		
 		
 	
-		<button type="submit">GIVER</button>
+		
 		
 	</form>
 	</div>
@@ -484,6 +484,10 @@
 				
 				
 				<div style="text-align:center">
+					
+					<p id="sigtitle"></p>
+					<p>Please sign within the box below:</p>
+					
 		   		<canvas class="pad" style="width:350px" height="150px"></canvas>
 		      	<input type="hidden" name="output" id="output" class="output">
 		      </div>
@@ -561,12 +565,18 @@
 	function GetSig1(){
 		$("#formcontent").hide();
 		$("#signature").show();
+		$("#sigtitle").html("Cheif Executife Officer signature");
+		$('html, body').animate({scrollTop : 0},800);
+		$("#sig1").css("background-color", "#FFF");
 		window.localStorage.setItem("SIG", "1");
 	}
 	
 	function GetSig2(){
 		$("#formcontent").hide();
 		$("#signature").show();
+		$("#sigtitle").html("Cheif Executife Officer or Designate signature");
+		$('html, body').animate({scrollTop : 0},800);
+		$("#sig2").css("background-color", "#FFF");
 		window.localStorage.setItem("SIG", "2");
 	}
 	
@@ -588,16 +598,17 @@
 				dataType : "json",
 				success : function(data) {
 					var sig = data.sig;
-					alert(sig);
+					
 					if(sig == "1"){
 						$("#sig1").html(data.filename);
 					}else{
 						$("#sig2").html(data.filename);
 					}
 					
-					
+					 
 					$("#formcontent").show();
 					$("#signature").hide();
+					$("html, body").animate({ scrollTop: $(document).height() }, "slow");
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
@@ -724,9 +735,10 @@
 		function Submit(){
 			
 			if(ValidateSubmit()){
-				SubmitForm1();
+				SubmitPersonnelForm();
 			}
 		}
+		
 		
 		function BackToForms(){
 			if (confirm("Are you sure you want to leave this form?  Any data entered will be lost.")) {
@@ -752,6 +764,152 @@
 					
 				}
 			});
+		}
+		
+		function SubmitPersonnelForm(){
+			
+			var chk471 = 0;
+			if ($("#chk471").is(':checked')) {
+				chk471 = "1";
+			}
+			var chk472 = 0;
+			if ($("#chk472").is(':checked')) {
+				chk472 = "1";
+			}
+			var chk533 = 0;
+			if ($("#chk533").is(':checked')) {
+				chk533 = "1";
+			}
+			var chk186 = 0;
+			if ($("#chk186").is(':checked')) {
+				chk186 = "1";
+			}
+			var chkIAID = 0;
+			if ($("#chkIAID").is(':checked')) {
+				chkIAID = "1";
+			}
+			var txtDivision = $("#txtDivision").val();
+			var chkDIVCHANGE = 0;
+			if ($("#chkDIVCHANGE").is(':checked')) {
+				chkDIVCHANGE = "1";
+			}
+			var txtChangeFrom = $("#txtChangeFrom").val();
+			var txtChangeTo = $("#txtChangeTo").val();
+			var chkUPDATE = 0;
+			if ($("#chkUPDATE").is(':checked')) {
+				chkUPDATE = "1";
+			}
+			var chkREIN = 0;
+			if ($("#chkREIN").is(':checked')) {
+				chkREIN = "1";
+			}
+			var chkAPPLIES = 0;
+			if ($("#chkAPPLIES").is(':checked')) {
+				chkAPPLIES = "1";
+			}
+			var txtCompanyName = $("#txtCompanyName").val();
+			var txtAddress = $("#txtAddress").val();
+			var txtCity = $("#txtCity").val();
+			var txtProvince = $("#txtProvince").val();
+			var txtPhone = $("#txtPhone").val();
+			var txtFax = $("#txtFax").val();
+			var txtCEO = $("#txtCEO").val();
+			var txtCEOEmail = $("#txtCEOEmail").val();
+			var txtOM1 = $("#txtOM1").val();
+			var txtOM1Email = $("#txtOM1Email").val();
+			var txtOM2 = $("#txtOM2").val();
+			var txtOM2Emai = $("#txtOM2Email").val();
+			var txtCC = $("#txtCC").val();
+			var txtCCEmail = $("#txtCCEmail").val();
+			var txtCCCell = $("#txtCCCell").val();
+			var chkCCSame = 0;
+			 if ($("#chkCCSame").is(':checked')) {
+				chkCCSame = "1";
+			}
+			var txtCCAddress = $("#txtCCAddress").val();
+			var txtCCCity = $("#txtCCCity").val();
+			var txtCCProvince = $("#txtCCProvince").val();
+			var txtCCCountry = $("#txtCCCountry").val();
+			var txtCCPostalCode = $("#txtCCPostalCode").val();
+			var txtCCPhone = $("#txtCCPhone").val();
+			var txtCCFax = $("#txtCCFax").val();
+			var txtWE1 = $("#txtWE1").val();
+			var txtWE1Email = $("#txtWE1Email").val();
+			var chkWE1Employed = 0;
+			if ($("#chkWE1Employed").is(':checked')) {
+				chkWE1Employed = "1";
+			}
+			var chkWE1Retained = 0;
+			if ($("#chkWE1Retained").is(':checked')) {
+				chkWE1Retained = "1";
+			}
+			var txtWE2 = $("#txtWE2").val();
+			var txtWE2Email = $("#txtWE2Email").val();
+			var chkWE2Employed = 0;
+			if ($("#chkWE2Employed").is(':checked')) {
+				chkWE2Employed = "1";
+			}
+			var chkWE2Retained = 0;
+			if ($("#chkWE2Retained").is(':checked')) {
+				chkWE2Retained = "1";
+			}
+			var txtWD1 = $("#txtWD1").val();
+			var txtWD1Email = $("#txtWD1Email").val();
+			var chkWD1Employed = 0;
+			if ($("#chkWD1Employed").is(':checked')) {
+				chkWD1Employed = "1";
+			}
+			var chkWD1Retained = 0;
+			if ($("#chkWD1Retained").is(':checked')) {
+				chkWD1Retained = "1";
+			}
+			var txtWPP = $("#txtWPP").val();
+			var txtWPPEmail = $("#txtWPPEmail").val();
+			var chkWPPEmployed = 0;
+			if ($("#chkWPPEmployed").is(':checked')) {
+				chkWPPEmployed = "1";
+			}
+			var chkWPPRetained = 0;
+			if ($("#chkWPPRetained").is(':checked')) {
+				chkWPPRetained = "1";
+			}
+			var txtWS1 = $("#txtWS1").val();
+			var txtWS1Email = $("#txtWS1Email").val();
+			var txtWS2 = $("#txtWS2").val();
+			var txtWS2Email = $("#txtWS2Email").val();
+			var txtWS3 = $("#txtWS3").val();
+			var txtWS3Email = $("#txtWS3Email").val();
+			var txtWS4 = $("#txtWS4").val();
+			var txtWS4Email = $("#txtWS4Email").val();
+			var txtAO = $("#txtAO").val();
+			var txtAOEmail = $("#txtAOEmail").val();
+			var txtQCO = $("#txtQCO").val();
+			var txtQCOEmail = $("#txtQCOEmail").val();
+			var txtDesignate = $("#txtDesignate").val();
+			
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/add_form.php",
+				async : false,
+				data : {'chk471' : chk471, 'chk472' : chk472, 'chk533' : chk533, 'chk186' : chk186, 'chkIAIO' : chkIAIO, 'txtDivision' : txtDivision, 'chkDIVCHANGE' : chkDIVCHANGE, 'txtChangeFrom' : txtChangeFrom, 'txtChangeTo' : txtChangeTo, 'chkUPDATE' : chkUPDATE, 'chkREIN' : chkREIN, 'chkAPPLIES' : chkAPPLIES,
+						'txtCompanyName' : txtCompanyName, 'txtAddress' : txtAddress, 'txtCity' : txtCity, 'txtProvince' : txtProvince, 'txtPhone' : txtPhone, 'txtFax' : txtFax, 'txtCEO' : txtCEO, 'txtCEOEmail' : txtCEOEmail, 'txtOM1' : txtOM1, 'txtOM1Email' : txtOM1Email, 'txtOM2' : txtOM2Email,
+						'txtCC' : txtCC, 'txtCCEmail' : txtCCEmail, 'txtCCCell' : txtCCCell, 'chkCCSame' : chkCCSame, 'txtCCAddress' : txtCCAddress, 'txtCCCity' : txtCCCity, 'txtCCProvince' : txtCCProvince, 'txtCCCountry' : txtCCCountry, 'txtCCPostalCode' : txtCCPostalCode, 'txtCCPhone' : txtCCPhone,
+						'txtCCFax' : txtCCFax, 'txtWE1' : txtWE1, 'txtWE1Email' : txtWE1Email, 'chkWE1Employed' : chkWE1Employed, 'chkWE1Retained' : chkWE1Retained, 'txtWE2' : txtWE2, 'txtWE2Email' : txtWE2Email, 'chkWE2Employed' : chkWE2Employed, 'chkWE2Retained' : chkWE2Retained,
+						'txtWD1' : txtWD1, 'txtWD1Email' : txtWD1Email, 'chkWD1Employed' : chkWD1Employed, 'chkWD1Retained' : chkWD1Retained, 'txtWPP' : txtWPP, 'txtWPPEmail' : txtWPPEmail, 'chkWPPEmployed' : chkWPPEmployed, 'chkWPPRetained' : chkWPPRetained,
+						'txtWS1' : txtWS1, 'txtWS1Email' : txtWS1Email, 'txtWS2' : txtWS2, 'txtWS2Email' : txtWS2Email,'txtWS3' : txtWS3, 'txtWS3Email' : txtWS3Email,'txtWS4' : txtWS4, 'txtWS4Email' : txtWS4Email, 'txtAO' : txtAO, 'txtAOEmail' : txtAOEmail, 'txtQCO' : txtQCO, 'txtQCOEmail' : txtQCOEmail,
+						'txtDesignate' : txtDesignate, 'sig1' : sig1, 'sig2' : sig2
+						},
+				
+				dataType : "json",
+				success : function(data) {
+					alert(data.result);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+				
 		}
 		
 		
