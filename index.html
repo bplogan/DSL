@@ -91,7 +91,8 @@ function handleLogin() {
     	        	   	        
     	        	
         			window.localStorage.setItem("uid", data.uid);   
-        		   if(data.uid > 0){   			
+        		   if(data.uid > 0){   		
+        		   	Sync();	
         		   	window.location = "company.html";
         		   	
         		   }else{

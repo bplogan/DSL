@@ -9,12 +9,13 @@
 	<script src="jquery-1.10.2.min.js"></script>
 	<script src="jquery.mobile-1.4.3.min.js"></script>
 	<script src="main.js"></script>
+	<link rel="stylesheet" href="http://www.mycfit.ca/site_dsl/services/mpdfpersonnel.css">
 	
 </head>
 
 <body>
 
-<div id="formPage" data-role="page" data-theme="a">
+<div id="reviewPage" data-role="page" data-theme="a">
 
 	<div data-role="header" data-position="fixed" data-theme="a">
     		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
@@ -22,38 +23,19 @@
     		
       	</div>
       	<img src="images/logo_sm.png" style="float:right" />
-      	<h6 style="font-size:24px;color#06234B">Forms</h6>
-      	
+      	<h6 style="font-size:24px;color#06234B">Review Form</h6>
     </div>
 
     <div data-role="content" >    
-		<div class="title">Select a form for:</div>
-		<div class="title" id="companyName"></div>
-		<ul id="formList" data-role="listview" data-filter="true" data-inset="true"  data-theme="a">
-			
-			<li><a href="formcompanyaudit.html">Engineer Report</a></li>
-			<li><a href="form_personnel.html" data-ajax="false">List of Personnel</a></li>
-		</ul>
-		
-		
-		<div style="height:20px"></div>
-	<div class="title">Submitted forms:</div>
-		
-		<ul id="historyList" data-role="listview" data-filter="false" data-inset="true"  data-theme="a"></ul>
-		<div id="message"></div>
-		
+		<div id="review" style="background-color:#FFF"></div>
 		<div id="err" style="display:none"></div>
 	</div>
-	
-	
-	
-	
-	
+
 	<div data-role="footer" data-position="fixed" >
      <div data-role="navbar">
     		<ul>
-    			<li><a id="btnPrev" href="company.html" data-icon="back">Back to Companies</a></li>
-    			
+    			<li><a id="btnPrev" href="forms.html" data-icon="arrow-l">Back to Forms</a></li>
+    			<li><a id="btnNext" href="javascript:SendEmail()" data-icon="mail" data-iconpos="right">Re-send</a></li>
     		</ul>
     	</div>
 	</div>
@@ -70,43 +52,43 @@
 
 	<script>
 	
-		$(document).on("pagebeforeshow","#formPage",function(){
-			
-			
-			GetForms();
+		$(document).on("pagebeforeshow","#reviewPage",function(){
+			 GetForm();
 		});	
-		
-		
-		$(document).on("pageshow","#formPage",function(){
-			var success = window.localStorage.getItem("SUCCESS");
-			if(success > 0){
-				showErrorMessage("Form has been saved and emailed successfully", $("#err"), 3000);
-				window.localStorage.setItem("SUCCESS","0");
-			}
-		});	
-		
-		function GetForms(){
 			
-			var CID = window.localStorage.getItem("CID");
+		function GetForm(){
+			var FID = window.localStorage.getItem("FRID");
+			var FTYPE = window.localStorage.getItem("FT");
 			
 			$.ajax({
 				type : "POST",
 				url : "http://mycfit.ca/site_dsl/services/get_forms.php",
 				async : false,
-				data : {'CID' : CID},
+				data : {'FID' : FID,'FTYPE' : FTYPE},
+				dataType : "json",
+				success : function(data) {
+		
+					$("#review").html(data.result);
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+		}	
+		
+		function SendEmail(){
+			var FID = window.localStorage.getItem("FRID");
+			
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/send_email.php",
+				async : false,
+				data : {'FID' : FID},
 				dataType : "json",
 				success : function(data) {
 					
-					$("#historyList").empty().append(data.result);
-					$('#historyList').listview('refresh');
-					
-					var name = window.localStorage.getItem("CNAME");
-					$("#companyName").html(name + ' - ' + data.email);
-					
-					if(data.count <= 0){
-						$("#message").html("There are no forms completed for this company.");
-					}
-					
+					showErrorMessage("The form was emailed successfully", $("#err"), 0);
 				},
 				error : function(xhr, desc, err) {
 					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
@@ -115,20 +97,11 @@
 			});
 		}
 		
-		function GoForm(id,ft){
-			window.localStorage.setItem("FRID",id);
-			window.localStorage.setItem("FT",ft);
-			if(ft == "0"){
-				window.location= "review.html";
-			}else if(ft == "1"){
-				alert("ddd");
-				window.location= "review-personnel.html";
-			}
-			
-		}	
-		
-		
-		
+		function GoCompany(id,name){
+			window.localStorage.setItem("CID",id);
+			window.localStorage.setItem("CNAME",name);
+			window.location= "forms.html";
+		}
 	</script>
 
 </div>

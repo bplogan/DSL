@@ -397,7 +397,7 @@
 			<table cellspacing="0" cellpadding="1" width="100%">
 				<tr>
 					<td class="text-medium" style="text-align:center;border:1px solid #000;width:50px" rowspan="2">DATE</td>
-					<td class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
+					<td id="date1"  class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
 				</tr>
 				<tr>
 					<td class="text-medium" style="text-align:center;border-right:1px solid #000;border-bottom:1px solid #000">MM/DD/YYY</td>
@@ -438,7 +438,7 @@
 			<table cellspacing="0" cellpadding="1" width="100%">
 				<tr>
 					<td class="text-medium" style="text-align:center;border:1px solid #000;width:50px" rowspan="2">DATE</td>
-					<td class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
+					<td id="date2" class="text-medium" style="text-align:center;border-top:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;width:150px">February 17, 2012</td>
 				</tr>
 				<tr>
 					<td class="text-medium" style="text-align:center;border-right:1px solid #000;border-bottom:1px solid #000">MM/DD/YYY</td>
@@ -488,7 +488,7 @@
 					<p id="sigtitle"></p>
 					<p>Please sign within the box below:</p>
 					
-		   		<canvas class="pad" style="width:350px" height="150px"></canvas>
+		   		<canvas class="pad" style="width:90%" height="150px"></canvas>
 		      	<input type="hidden" name="output" id="output" class="output">
 		      </div>
 		     
@@ -552,6 +552,52 @@
 		$('.sigPad').signaturePad({drawOnly:true});
 	});	
 		
+	function GetCompany(){
+			var CID = window.localStorage.getItem("CID");
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/get_company.php",
+				async : false,
+				data : {'CID' : CID},
+				dataType : "json",
+				success : function(data) {
+					$("#CCODE").html(data.code);
+					$("#ADATE").html(data.date);
+					$("#date1").html(data.datesig);
+					$("#date2").html(data.datesig);
+					$("#txtWS1Email").val(data.ws1email);
+					$("#txtWS2Email").val(data.ws2email);
+					$("#txtWS3Email").val(data.ws3email);
+					$("#txtCEOEmail").val(data.ceoemail);
+					$("#txtCCEmail").val(data.ccemail);
+					$("#txtOM1").val(data.om1);
+					$("#txtOM1Email").val(data.om1email);
+					$("#txtOM2").val(data.om2);
+					$("#txtOM2Email").val(data.om2email);
+					$("#txtAO").val(data.ao);
+					$("#txtAOEmail").val(data.aoemail);
+					$("#txtWS4").val(data.ws4);
+					$("#txtWS4Email").val(data.ws4email);
+					$("#txtWS1").val(data.ws1);
+					$("#txtWS2").val(data.ws2);
+					$("#txtWS3").val(data.ws3);
+					$("#txtCEO").val(data.ceo);
+					$("#txtCC").val(data.certcontact);
+					$("#txtWE1").val(data.we);
+					$("#txtCompanyName").val(data.name);
+					$("#txtAddress").val(data.address);
+					$("#txtCity").val(data.city);
+					$("#txtProvince").val(data.province);
+					$("#txtPhone").val(data.phone);
+					$("#txtFax").val(data.fax);
+									},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+		}
+		
 	$('#frmPersonnel').submit(function (e) {
 	    e.preventDefault();
 	    SubmitPersonnelForm();
@@ -589,7 +635,7 @@
 		var SIG = window.localStorage.getItem("SIG");
 		var CID = window.localStorage.getItem("CID");
 		var output = $("#output").val();
-		
+		if(output !== ""){
 			$.ajax({
 				type : "POST",
 				url : "http://mycfit.ca/site_dsl/services/signature.php",
@@ -606,6 +652,7 @@
 					}else{
 						$("#sig2").html(data.filename);
 						window.localStorage.setItem("SIG2", data.sigpath); 
+						
 					}
 					
 					
@@ -618,26 +665,14 @@
 					
 				}
 			});
+			
+			}else{
+				showErrorMessage("Please sign the grey box", $("#errmsg"), 0);
+			}
 		
 	}
 		
-	function SubmitPersonnelForm(){
-		var sig = $("#output").val();
-		$.ajax({
-				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
-				async : false,
-				data : {'output' : sig},
-				dataType : "json",
-				success : function(data) {
-					alert(data.result);
-				},
-				error : function(xhr, desc, err) {
-					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
-					
-				}
-			});
-	}
+	
 	
 	
 		function ValidatePage(page){
@@ -661,74 +696,79 @@
 		function ValidateSubmit(){
 			var bReturn = true;
 			var msg = "";
-						
-			if(!$("input[name='crad']:checked").val()){
-				msg += "Please answer question c.<br />";
+			
+			if($("#txtCompanyName").val().trim() == ""){
+				msg += "Please enter a Company Name<br />";
 				bReturn = false;
 			}
-			if(!$("input[name='drad']:checked").val()){
-				msg += "Please answer question d.<br />";
+			if($("#txtAddress").val().trim() == ""){
+				msg += "Please enter a Company Address<br />";
 				bReturn = false;
 			}
-			if( (($("input[name='crad']:checked").val() == "0") ||  ($("input[name='drad']:checked").val() == "0")) && ($("#eNOTES").val() == "")){
-					msg += "Please specify the reason(s) for answering 'NO' to questions c. and/or d. in the box provided in question e. <br />";
+			if($("#txtCity").val().trim() == ""){
+				msg += "Please enter a Company City<br />";
+				bReturn = false;
+			}
+			if($("#txtProvince").val().trim() == ""){
+				msg += "Please enter a Company Province<br />";
+				bReturn = false;
+			}
+			if($("#txtPhone").val().trim() == ""){
+				msg += "Please enter a Company Phone<br />";
+				bReturn = false;
+			}
+			if($("#txtFax").val().trim() == ""){
+				msg += "Please enter a Company Fax<br />";
+				bReturn = false;
+			}
+			if($("#txtCC").val().trim() == ""){
+				msg += "Please enter a Certification Contact<br />";
+				bReturn = false;
+			}
+			if($("#txtCCEmail").val().trim() == ""){
+				msg += "Please enter a Certification Contact Email<br />";
+				bReturn = false;
+			}
+			if($("#txtWE1").val().trim() == ""){
+				msg += "Please enter a Welding Engineer<br />";
+				bReturn = false;
+			}
+			if($("#txtWE1Email").val().trim() == ""){
+				msg += "Please enter a Welding Engineer Email<br />";
+				bReturn = false;
+			}
+			if($("#txtWS1").val().trim() == ""){
+				msg += "Please enter a Welding Supervisor<br />";
+				bReturn = false;
+			}
+			if($("#txtWS1Email").val().trim() == ""){
+				msg += "Please enter a Welding Supervisor Email<br />";
+				bReturn = false;
+			}
+			if($("#txtAO").val().trim() == ""){
+				msg += "Please enter an Accounts Officer<br />";
+				bReturn = false;
+			}
+			if($("#txtAOEmail").val().trim() == ""){
+				msg += "Please enter an Accounts Officer Email<br />";
+				bReturn = false;
+			}
+			
+			if($("#txtDesignate").val() !== ""){
+				if($("#sig1").html().trim() == ""){
+					msg += "Please enter a signature for the Designate approval<br />";
 					bReturn = false;
 				}
-			
-			if(!$("input[name='frad']:checked").val()){
-				msg += "Please answer question f.<br />";
-				bReturn = false;
 			}
-			if(!$("input[name='grad']:checked").val()){
-				msg += "Please answer question g.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='hrad']:checked").val()){
-				msg += "Please answer question h.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='irad']:checked").val()){
-				msg += "Please answer question i.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='jrad']:checked").val()){
-				msg += "Please answer question j.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='krad']:checked").val()){
-				msg += "Please answer question k.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='lrad']:checked").val()){
-				msg += "Please answer question l.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='mrad']:checked").val()){
-				msg += "Please answer question m.<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='nrad']:checked").val()){
-				msg += "Please answer question n.<br />";
-				bReturn = false;
-			}
-						
-			if(!$("input[name='chkType']:checked").val()){
-				msg += "Please select a Standard (47.1 or 47.2)<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='radPass']:checked").val()){
-				msg += "Please select whether the requirements of the pertinent standards have or have not been met<br />";
-				bReturn = false;
-			}
-			if(!$("input[name='oYES']:checked").val()){
-				msg += "This report must be reviewed by the retained engineer of the subject company (q.o.)<br />"	;
-				bReturn = false;
-			}
-			if(!$("#txtBy").val() ){
-				msg += "Please enter a name in the 'Completed by' box";
-				bReturn = false;
+			if($("#sig2").html().trim() == ""){
+					msg += "Please enter a CEO signature<br />";
+					bReturn = false;
 			}
 			
+			
+			
+				
+		
 			if(bReturn == false){
 				showErrorMessage(msg, $("#errmsg"), 0);
 			}
@@ -750,26 +790,11 @@
 			
 		}
 		
-		function GetCompany(){
-			var CID = window.localStorage.getItem("CID");
-			$.ajax({
-				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_company.php",
-				async : false,
-				data : {'CID' : CID},
-				dataType : "json",
-				success : function(data) {
-					$("#CCODE").html(data.code);
-					$("#ADATE").html(data.date);
-				},
-				error : function(xhr, desc, err) {
-					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
-					
-				}
-			});
-		}
+		
 		
 		function SubmitPersonnelForm(){
+			
+			if(ValidateSubmit()){
 			
 			var chk471 = 0;
 			if ($("#chk471").is(':checked')) {
@@ -890,11 +915,10 @@
 			var txtQCOEmail = $("#txtQCOEmail").val();
 			var txtDesignate = $("#txtDesignate").val();
 			var CID = window.localStorage.getItem("CID");
-			var SIG1 = window.localStorage.getItem("SIG1");
-			var SIG2 = window.localStorage.getItem("SIG2");
+			var SIG1 = encodeURI(window.localStorage.getItem("SIG1"));
+			var SIG2 = encodeURI(window.localStorage.getItem("SIG2"));
 			
-			
-			
+			alert(SIG2);
 			$.ajax({
 				type : "POST",
 				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
@@ -965,19 +989,22 @@
 				'txtQCOEmail' : txtQCOEmail, 
 				'txtDesignate' : txtDesignate,
 				'sig1' : SIG1,
-				'sig2' : SIG2
+				'sig2' : SIG2,
+				'CRAP' : CID
 				},
 				
 				dataType : "json",
 				success : function(data) {
-					
+					alert(data.test);
+					window.localStorage.setItem("SUCCESS",data.result);
+					window.location= "forms.html";
 				},
 				error : function(xhr, desc, err) {
 					alert(xhr + desc + err);
 					
 				}
 			});
-				
+		}		
 		}
 		
 		

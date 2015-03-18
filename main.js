@@ -23,6 +23,23 @@ function showErrorMessage(message, $container, delay) {
 	}
 }
 
+function Sync(){
+	$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_dsl/services/sync.php",
+				async : false,
+				data : {},
+				dataType : "json",
+				success : function(data) {
+					
+				},
+				error : function(xhr, desc, err) {
+					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					
+				}
+			});
+}
+
 function SubmitForm1(){
 	var CID = window.localStorage.getItem("CID");
 	var aSMAW = "0";

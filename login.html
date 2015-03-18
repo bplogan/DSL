@@ -41,7 +41,7 @@
 									showErrorMessage(data.error, $("#errmsg"), 0);
 
 								} else {
-									
+									Sync();
 									window.localStorage.setItem("username", u);
 									window.localStorage.setItem("uid", data.uid);
 									window.localStorage.setItem("name", data.name);
