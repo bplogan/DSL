@@ -523,7 +523,7 @@
     	<div data-role="navbar">
     		<ul>
     			<li><a id="btnPrev" href="javascript:BackToForms()" data-icon="back">Back</a></li>
-    			<li><a href="javascript:Submit()" id="btnNext"   data-icon="check" data-iconpos="right">Submit</a></li>
+    			<li><a href="javascript:SubmitPersonnelForm()" id="btnNext"   data-icon="check" data-iconpos="right">Submit</a></li>
     		</ul>
     	</div>
    	
@@ -601,11 +601,14 @@
 					
 					if(sig == "1"){
 						$("#sig1").html(data.filename);
+						
+						window.localStorage.setItem("SIG1", data.sigpath); 
 					}else{
 						$("#sig2").html(data.filename);
+						window.localStorage.setItem("SIG2", data.sigpath); 
 					}
 					
-					 
+					
 					$("#formcontent").show();
 					$("#signature").hide();
 					$("html, body").animate({ scrollTop: $(document).height() }, "slow");
@@ -818,7 +821,7 @@
 			var txtOM1 = $("#txtOM1").val();
 			var txtOM1Email = $("#txtOM1Email").val();
 			var txtOM2 = $("#txtOM2").val();
-			var txtOM2Emai = $("#txtOM2Email").val();
+			var txtOM2Email = $("#txtOM2Email").val();
 			var txtCC = $("#txtCC").val();
 			var txtCCEmail = $("#txtCCEmail").val();
 			var txtCCCell = $("#txtCCCell").val();
@@ -886,26 +889,91 @@
 			var txtQCO = $("#txtQCO").val();
 			var txtQCOEmail = $("#txtQCOEmail").val();
 			var txtDesignate = $("#txtDesignate").val();
+			var CID = window.localStorage.getItem("CID");
+			var SIG1 = window.localStorage.getItem("SIG1");
+			var SIG2 = window.localStorage.getItem("SIG2");
+			
+			
 			
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/add_form.php",
+				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
 				async : false,
-				data : {'chk471' : chk471, 'chk472' : chk472, 'chk533' : chk533, 'chk186' : chk186, 'chkIAIO' : chkIAIO, 'txtDivision' : txtDivision, 'chkDIVCHANGE' : chkDIVCHANGE, 'txtChangeFrom' : txtChangeFrom, 'txtChangeTo' : txtChangeTo, 'chkUPDATE' : chkUPDATE, 'chkREIN' : chkREIN, 'chkAPPLIES' : chkAPPLIES,
-						'txtCompanyName' : txtCompanyName, 'txtAddress' : txtAddress, 'txtCity' : txtCity, 'txtProvince' : txtProvince, 'txtPhone' : txtPhone, 'txtFax' : txtFax, 'txtCEO' : txtCEO, 'txtCEOEmail' : txtCEOEmail, 'txtOM1' : txtOM1, 'txtOM1Email' : txtOM1Email, 'txtOM2' : txtOM2Email,
-						'txtCC' : txtCC, 'txtCCEmail' : txtCCEmail, 'txtCCCell' : txtCCCell, 'chkCCSame' : chkCCSame, 'txtCCAddress' : txtCCAddress, 'txtCCCity' : txtCCCity, 'txtCCProvince' : txtCCProvince, 'txtCCCountry' : txtCCCountry, 'txtCCPostalCode' : txtCCPostalCode, 'txtCCPhone' : txtCCPhone,
-						'txtCCFax' : txtCCFax, 'txtWE1' : txtWE1, 'txtWE1Email' : txtWE1Email, 'chkWE1Employed' : chkWE1Employed, 'chkWE1Retained' : chkWE1Retained, 'txtWE2' : txtWE2, 'txtWE2Email' : txtWE2Email, 'chkWE2Employed' : chkWE2Employed, 'chkWE2Retained' : chkWE2Retained,
-						'txtWD1' : txtWD1, 'txtWD1Email' : txtWD1Email, 'chkWD1Employed' : chkWD1Employed, 'chkWD1Retained' : chkWD1Retained, 'txtWPP' : txtWPP, 'txtWPPEmail' : txtWPPEmail, 'chkWPPEmployed' : chkWPPEmployed, 'chkWPPRetained' : chkWPPRetained,
-						'txtWS1' : txtWS1, 'txtWS1Email' : txtWS1Email, 'txtWS2' : txtWS2, 'txtWS2Email' : txtWS2Email,'txtWS3' : txtWS3, 'txtWS3Email' : txtWS3Email,'txtWS4' : txtWS4, 'txtWS4Email' : txtWS4Email, 'txtAO' : txtAO, 'txtAOEmail' : txtAOEmail, 'txtQCO' : txtQCO, 'txtQCOEmail' : txtQCOEmail,
-						'txtDesignate' : txtDesignate, 'sig1' : sig1, 'sig2' : sig2
-						},
+				data : {'CID' : CID, 
+				'chk471' : chk471, 
+				'chk472' : chk472, 
+				'chk533' : chk533, 
+				'chk186' : chk186, 
+				'chkIAID' : chkIAID, 
+				'txtDivision' : txtDivision, 
+				'chkDIVCHANGE' : chkDIVCHANGE, 
+				'txtChangeFrom' : txtChangeFrom, 
+				'txtChangeTo' : txtChangeTo, 
+				'chkUPDATE' : chkUPDATE, 
+				'chkREIN' : chkREIN, 
+				'chkAPPLIES' : chkAPPLIES,
+				'txtCompanyName' : txtCompanyName, 
+				'txtAddress' : txtAddress, 
+				'txtCity' : txtCity, 
+				'txtProvince' : txtProvince,
+				'txtPhone' : txtPhone, 
+				'txtFax' : txtFax, 
+				'txtCEO' : txtCEO, 
+				'txtCEOEmail' : txtCEOEmail, 
+				'txtOM1' : txtOM1, 
+				'txtOM1Email' : txtOM1Email, 
+				'txtOM2' : txtOM2,
+				'txtOM2Email' : txtOM2Email,
+				'txtCC' : txtCC, 
+				'txtCCEmail' : txtCCEmail,
+				'txtCCCell' : txtCCCell,
+				'chkCCSame' : chkCCSame, 
+				'txtCCAddress' : txtCCAddress, 
+				'txtCCCity' : txtCCCity, 
+				'txtCCProvince' : txtCCProvince, 
+				'txtCCCountry' : txtCCCountry, 
+				'txtCCPostalCode' : txtCCPostalCode,
+				'txtCCPhone' : txtCCPhone,
+				'txtCCFax' : txtCCFax, 
+				'txtWE1' : txtWE1, 
+				'txtWE1Email' : txtWE1Email, 
+				'chkWE1Employed' : chkWE1Employed, 
+				'chkWE1Retained' : chkWE1Retained, 
+				'txtWE2' : txtWE2, 
+				'txtWE2Email' : txtWE2Email, 
+				'chkWE2Employed' : chkWE2Employed, 
+				'chkWE2Retained' : chkWE2Retained, 
+				'txtWD1' : txtWD1, 
+				'txtWD1Email' : txtWD1Email, 
+				'chkWD1Employed' : chkWD1Employed, 
+				'chkWD1Retained' : chkWD1Retained, 
+				'txtWPP' : txtWPP,
+				'txtWPPEmail' : txtWPPEmail, 
+				'chkWPPEmployed' : chkWPPEmployed, 
+				'chkWPPRetained' : chkWPPRetained, 
+				'txtWS1' : txtWS1, 
+				'txtWS1Email' : txtWS1Email, 
+				'txtWS2' : txtWS2, 
+				'txtWS2Email' : txtWS2Email,
+				'txtWS3' : txtWS3,
+				'txtWS3Email' : txtWS3Email,
+				'txtWS4' : txtWS4, 
+				'txtWS4Email' : txtWS4Email, 
+				'txtAO' : txtAO, 
+				'txtAOEmail' : txtAOEmail, 
+				'txtQCO' : txtQCO, 
+				'txtQCOEmail' : txtQCOEmail, 
+				'txtDesignate' : txtDesignate,
+				'sig1' : SIG1,
+				'sig2' : SIG2
+				},
 				
 				dataType : "json",
 				success : function(data) {
-					alert(data.result);
+					
 				},
 				error : function(xhr, desc, err) {
-					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+					alert(xhr + desc + err);
 					
 				}
 			});
