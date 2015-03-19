@@ -506,6 +506,8 @@
 		        
 				</div>
 			</form>
+			
+			<div id="sql"></div>
 		    </div>
 		
 		
@@ -643,15 +645,15 @@
 				data : {'output' : output, 'CID' : CID, 'SIG' : SIG},
 				dataType : "json",
 				success : function(data) {
-					var sig = data.sig;
 					
-					if(sig == "1"){
+					
+					if(SIG == "1"){
 						$("#sig1").html(data.filename);
 						
-						window.localStorage.setItem("SIG1", data.sigpath); 
+						window.localStorage.setItem("SIGDESIGNATE", data.sigpath); 
 					}else{
 						$("#sig2").html(data.filename);
-						window.localStorage.setItem("SIG2", data.sigpath); 
+						window.localStorage.setItem("SIGCEO", data.sigpath); 
 						
 					}
 					
@@ -915,20 +917,23 @@
 			var txtQCOEmail = $("#txtQCOEmail").val();
 			var txtDesignate = $("#txtDesignate").val();
 			var CID = window.localStorage.getItem("CID");
-			var SIG1 = encodeURI(window.localStorage.getItem("SIG1"));
-			var SIG2 = encodeURI(window.localStorage.getItem("SIG2"));
+			var SIGDESIGNATE = window.localStorage.getItem("SIGDESIGNATE");
+			var SIGCEO = window.localStorage.getItem("SIGCEO");
 			
-			alert(SIG2);
+			alert(SIGDESIGNATE);
+			alert(SIGCEO);
 			$.ajax({
 				type : "POST",
 				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
 				async : false,
 				data : {'CID' : CID, 
+				'sigdesignate' : SIGDESIGNATE,
 				'chk471' : chk471, 
 				'chk472' : chk472, 
 				'chk533' : chk533, 
 				'chk186' : chk186, 
 				'chkIAID' : chkIAID, 
+				'sigceo' : SIGCEO,
 				'txtDivision' : txtDivision, 
 				'chkDIVCHANGE' : chkDIVCHANGE, 
 				'txtChangeFrom' : txtChangeFrom, 
@@ -988,16 +993,16 @@
 				'txtQCO' : txtQCO, 
 				'txtQCOEmail' : txtQCOEmail, 
 				'txtDesignate' : txtDesignate,
-				'sig1' : SIG1,
-				'sig2' : SIG2,
+				
+				
 				'CRAP' : CID
 				},
 				
 				dataType : "json",
 				success : function(data) {
-					alert(data.test);
-					window.localStorage.setItem("SUCCESS",data.result);
-					window.location= "forms.html";
+					alert(data.error);
+					//window.localStorage.setItem("SUCCESS",data.result);
+					//window.location= "forms.html";
 				},
 				error : function(xhr, desc, err) {
 					alert(xhr + desc + err);
