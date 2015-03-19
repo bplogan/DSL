@@ -920,8 +920,7 @@
 			var SIGDESIGNATE = window.localStorage.getItem("SIGDESIGNATE");
 			var SIGCEO = window.localStorage.getItem("SIGCEO");
 			
-			alert(SIGDESIGNATE);
-			alert(SIGCEO);
+		
 			$.ajax({
 				type : "POST",
 				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
@@ -1000,12 +999,12 @@
 				
 				dataType : "json",
 				success : function(data) {
-					alert(data.error);
-					//window.localStorage.setItem("SUCCESS",data.result);
-					//window.location= "forms.html";
+					
+					window.localStorage.setItem("SUCCESS",data.result);
+					window.location= "forms.html";
 				},
 				error : function(xhr, desc, err) {
-					alert(xhr + desc + err);
+					
 					
 				}
 			});
