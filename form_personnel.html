@@ -408,7 +408,7 @@
 		<td>
 			<table>
 				<tr>
-					<td id="sig1" style="text-align:center;width:350px;background-color:#EBEBEB;height:150px" onclick="GetSig1()">
+					<td id="sig1" style="text-align:center;width:350px;background-color:#EBEBEB;height:100px" onclick="GetSig1()">
 						
 					</td>
 					
@@ -449,7 +449,7 @@
 		<td>
 			<table>
 				<tr>
-					<td id="sig2" style="text-align:center;width:350px;background-color:#EBEBEB;height:150px" onclick="GetSig2()">
+					<td id="sig2" style="text-align:center;width:350px;background-color:#EBEBEB;height:100px" onclick="GetSig2()">
 						
 					</td>
 					
@@ -488,7 +488,7 @@
 					<p id="sigtitle"></p>
 					<p>Please sign within the box below:</p>
 					
-		   		<canvas class="pad" style="width:90%" height="150px"></canvas>
+		   		<canvas id="sigpad" class="pad" style="width:350px" height="100px"></canvas>
 		      	<input type="hidden" name="output" id="output" class="output">
 		      </div>
 		     
@@ -532,10 +532,9 @@
 	</div>
     
     
-	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="a">
-		
-		<canvas class="pad" width="350px" height="75px"></canvas>
-		<input type="hidden" name="output" id="output" class="output">
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="a">
+		<p style="text-align:center"><img src="images/logo.png" width="70%" /></p>
+		<div style="height:20px"></div>
 	   	<ul data-role="listview" data-filter="false" data-theme="a" data-inset="false">
 	   		<li><a href="company.html"  data-rel="close" class="ui-btn ui-shadow ui-btn-a ui-icon-home ui-btn-icon-right" data-ajax="false">Companies</a></li>
 	   		<li><a href="settings.html"  data-rel="close" class="ui-btn ui-shadow ui-btn-a ui-icon-gear ui-btn-icon-right" data-ajax="false">Settings</a></li>
@@ -552,6 +551,8 @@
 		$('#btnPrev').html("Back to forms");
 		GetCompany();
 		$('.sigPad').signaturePad({drawOnly:true});
+		
+		
 	});	
 		
 	function GetCompany(){

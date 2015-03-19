@@ -79,19 +79,19 @@
 		
 		function SendEmail(){
 			var FID = window.localStorage.getItem("FRID");
-			
+			var CID = window.localStorage.getItem("CID");
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/send_email.php",
+				url : "http://mycfit.ca/site_dsl/services/send_email.php?type=1",
 				async : false,
-				data : {'FID' : FID},
+				data : {'FID' : FID, 'CID' : CID},
 				dataType : "json",
 				success : function(data) {
 					
 					showErrorMessage("The form was emailed successfully", $("#err"), 0);
 				},
 				error : function(xhr, desc, err) {
-					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+						showErrorMessage(xhr + desc + err, $("#err"), 0);
 					
 				}
 			});
