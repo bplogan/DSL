@@ -126,7 +126,7 @@
 			
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_companyinfo.php",
+				url : "http://app.dslengineering.ca/services/get_companyinfo.php",
 				async : false,
 				data : {'CID' : CID},
 				dataType : "json",
@@ -192,7 +192,7 @@
 				
 				$.ajax({
 					type : "POST",
-					url : "http://mycfit.ca/site_dsl/services/edit_company.php?ID=" + cid + "&PROV=" + prov,
+					url : "http://app.dslengineering.ca/services/edit_company.php?ID=" + cid + "&PROV=" + prov,
 					async : false,
 					data : { 'TYPE': type, 'NAME' : name, 'CODE' : code , 'EMAIL' : email, 'CONTACT' : contact, 'CITY' : city, 'ADDRESS' : address},
 					dataType : "json",
