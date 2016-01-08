@@ -23,24 +23,24 @@ function showErrorMessage(message, $container, delay) {
 	}
 }
 
-function Sync(){
+function Sync() {
 	$.ajax({
-				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/sync.php",
-				async : false,
-				data : {},
-				dataType : "json",
-				success : function(data) {
-					
-				},
-				error : function(xhr, desc, err) {
-					showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
-					
-				}
-			});
+		type : "POST",
+		url : "http://app.dslengineering.ca/services/sync.php",
+		async : false,
+		data : {},
+		dataType : "json",
+		success : function(data) {
+
+		},
+		error : function(xhr, desc, err) {
+			showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
+
+		}
+	});
 }
 
-function SubmitForm1(){
+function SubmitForm1() {
 	var CID = window.localStorage.getItem("CID");
 	var aSMAW = "0";
 	$("#btnNext").html("Sending..");
@@ -55,7 +55,7 @@ function SubmitForm1(){
 	if ($("#aFCAW").is(':checked')) {
 		aFCAW = 1;
 	}
-	var aSAW= "0";
+	var aSAW = "0";
 	if ($("#aSAW").is(':checked')) {
 		aSAW = 1;
 	}
@@ -79,7 +79,7 @@ function SubmitForm1(){
 	if ($("#bFCAW").is(':checked')) {
 		bFCAW = 1;
 	}
-	var bSAW= "0";
+	var bSAW = "0";
 	if ($("#bSAW").is(':checked')) {
 		bSAW = 1;
 	}
@@ -107,39 +107,61 @@ function SubmitForm1(){
 	if ($("#oYES").is(':checked')) {
 		qo = "1";
 	}
-	var qp = encodeURI($("#pCOMMENTS").val());	
-	
+	var qp = encodeURI($("#pCOMMENTS").val());
+
 	var ftype = $("input[name='chkType']:checked").val();
 	var pass = $("input[name='radPass']:checked").val();
 	var by = encodeURI($("#txtBy").val());
-	
+
 	$.ajax({
 		type : "POST",
-		url : "http://mycfit.ca/site_dsl/services/add_form.php",
+		url : "http://app.dslengineering.ca/services/add_form.php",
 		async : false,
-		data : {'aSMAW' : aSMAW, 'aGMAW' : aGMAW, 'aFCAW' : aFCAW, 'aSAW' : aSAW, 'aGTAW' : aGTAW, 'aOTHER' : aOther,
-				'bSMAW' : bSMAW, 'bGMAW' : bGMAW, 'bFCAW' : bFCAW, 'bSAW' : bSAW, 'bGTAW' : bGTAW, 'bOTHER' : bOther,
-				'qc' : qc, 'qd' : qd, 'qe' : qe, 'qf' : qf, 'qg' : qg, 'qh' : qh, 'qi' : qi, 'qj' : qj, 'qk' : qk, 'ql' : ql, 'qm' : qm, 'qn' : qn, 'qo' :qo, 'qp' : qp,
-				'ftype' : ftype, 'pass' : pass, 'by' : by, 'CID' : CID
-			   },
+		data : {
+			'aSMAW' : aSMAW,
+			'aGMAW' : aGMAW,
+			'aFCAW' : aFCAW,
+			'aSAW' : aSAW,
+			'aGTAW' : aGTAW,
+			'aOTHER' : aOther,
+			'bSMAW' : bSMAW,
+			'bGMAW' : bGMAW,
+			'bFCAW' : bFCAW,
+			'bSAW' : bSAW,
+			'bGTAW' : bGTAW,
+			'bOTHER' : bOther,
+			'qc' : qc,
+			'qd' : qd,
+			'qe' : qe,
+			'qf' : qf,
+			'qg' : qg,
+			'qh' : qh,
+			'qi' : qi,
+			'qj' : qj,
+			'qk' : qk,
+			'ql' : ql,
+			'qm' : qm,
+			'qn' : qn,
+			'qo' : qo,
+			'qp' : qp,
+			'ftype' : ftype,
+			'pass' : pass,
+			'by' : by,
+			'CID' : CID
+		},
 		dataType : "json",
 		success : function(data) {
-			
-			if(data.result > 0){
-				window.localStorage.setItem("SUCCESS",data.result);
-				window.location= "forms.html";
+
+			if (data.result > 0) {
+				window.localStorage.setItem("SUCCESS", data.result);
+				window.location = "forms.html";
 			}
-			
+
 		},
 		error : function(xhr, desc, err) {
 			showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
-			
+
 		}
 	});
-	
-			
-			
-			
-			
-	
+
 }

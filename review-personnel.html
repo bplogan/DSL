@@ -9,7 +9,7 @@
 	<script src="jquery-1.10.2.min.js"></script>
 	<script src="jquery.mobile-1.4.3.min.js"></script>
 	<script src="main.js"></script>
-	<link rel="stylesheet" href="http://www.mycfit.ca/site_dsl/services/mpdfpersonnel.css">
+	<link rel="stylesheet" href="app.dslengineering.ca/services/mpdfpersonnel.css">
 	
 </head>
 
@@ -62,7 +62,7 @@
 			
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_forms.php",
+				url : "http://app.dslengineering.ca/services/get_forms.php",
 				async : false,
 				data : {'FID' : FID,'FTYPE' : FTYPE},
 				dataType : "json",
@@ -82,7 +82,7 @@
 			var CID = window.localStorage.getItem("CID");
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/send_email.php?type=1",
+				url : "http://app.dslengineering.ca/services/send_email.php?type=1",
 				async : false,
 				data : {'FID' : FID, 'CID' : CID},
 				dataType : "json",
