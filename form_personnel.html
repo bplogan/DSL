@@ -559,7 +559,7 @@
 			var CID = window.localStorage.getItem("CID");
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/get_company.php",
+				url : "http://app.dslengineering.ca/services/get_company.php",
 				async : false,
 				data : {'CID' : CID},
 				dataType : "json",
@@ -641,7 +641,7 @@
 		if(output !== ""){
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/signature.php",
+				url : "http://app.dslengineering.ca/services/signature.php",
 				async : false,
 				data : {'output' : output, 'CID' : CID, 'SIG' : SIG},
 				dataType : "json",
@@ -924,7 +924,7 @@
 		
 			$.ajax({
 				type : "POST",
-				url : "http://mycfit.ca/site_dsl/services/add_form_personnel.php",
+				url : "http://app.dslengineering.ca/services/add_form_personnel.php",
 				async : false,
 				data : {'CID' : CID, 
 				'sigdesignate' : SIGDESIGNATE,
