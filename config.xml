@@ -35,6 +35,7 @@
     <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
     <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
     <gap:plugin name="org.apache.cordova.device"  />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
 		
 	<gap:splash src="ios/screen-iphone-portrait.png"          gap:platform="ios"     width="320" height="480" />
