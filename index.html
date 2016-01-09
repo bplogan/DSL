@@ -29,7 +29,7 @@
 	
 	function deviceReady() {
 		
-	   alert("ready");
+	   
 		console.log("deviceReady");
 		//GetCommon();
 		StatusBar.overlaysWebView(false);
@@ -39,15 +39,15 @@
 		
 		
 		setTimeout(function() {
-        	var networkState = navigator.connection.type;
-			if(networkState == Connection.NONE){
-				window.location = "err.html";
-			}else{
+        	//var networkState = navigator.connection.type;
+			//if(networkState == Connection.NONE){
+			//	window.location = "err.html";
+			//}else{
 			
 			checkPreAuth();
 			
 			//$.mobile.changePage("login.html");
-			}
+			//}
 		}, 2000);
 		
 		
@@ -55,7 +55,7 @@
 	}
 
 function checkPreAuth() {
-		alert("checkpreauth");
+		
 		console.log("checkPreAuth");
 	    var u = window.localStorage.getItem("username");
 	       
@@ -69,7 +69,7 @@ function checkPreAuth() {
 	}
 	
 function handleLogin() {
-		alert("handle login");
+		
 		 var u = window.localStorage.getItem("username");
 	  	 $.ajax({
 	        type: "POST",
@@ -86,7 +86,7 @@ function handleLogin() {
     	        	window.localStorage.setItem("name", msg.name);
     	        	window.localStorage.setItem("uid", msg.uid);   
         		   	if(msg.uid > 0){   		
-        		   		//Sync();	
+        		   		Sync();	
         		   		window.location = "company.html";
         		    }else{
         		   		window.location = "login.html";
