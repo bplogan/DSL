@@ -17,13 +17,10 @@
 			function Login() {
 				$("#loader").show();
 				setTimeout(function() {
-					
 					var u = $("#username").val();
-					
-
 					if (u != '' ) {
 						
-						
+						alert("http://app.dslengineering.ca/services/login.php?u=" + u);
 						$.ajax({
 							type : "POST",
 							url : "http://app.dslengineering.ca/services/login.php?u=" + u,
@@ -41,7 +38,7 @@
 									showErrorMessage(data.error, $("#errmsg"), 0);
 
 								} else {
-									Sync();
+									//Sync();
 									window.localStorage.setItem("username", u);
 									window.localStorage.setItem("uid", data.uid);
 									window.localStorage.setItem("name", data.name);
@@ -52,7 +49,7 @@
 							},
 							error : function(xhr, desc, err) {
 								$("#loader").hide();
-								
+								alert(err);
 								showErrorMessage("There was a problem logging you in, please try again.", $("#errmsg"), 0);
 
 							}
@@ -63,7 +60,7 @@
 						$("#loader").hide();
 
 					}
-				}, 1000);
+				}, 200);
 
 			}
 		</script>
