@@ -69,14 +69,15 @@ function checkPreAuth() {
 	}
 	
 function handleLogin() {
-	
+		alert("handle login");
 		 var u = window.localStorage.getItem("username");
 	  	 $.ajax({
 	        type: "POST",
-	        url: "http://app.dslengineering.ca/services/login.php",
+	        url: "http://app.dslengineering.ca/services/login.php?u=" + u,
 	        data: {'u' : u},
 	        dataType: "json",
 	        success: function(msg) {
+	        	alert("success");
 	        	if(msg.error !== ""){
     	        	window.location = "login.html";
     	        	
