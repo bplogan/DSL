@@ -102,7 +102,7 @@ function handleLogin() {
     	        }
 	     	},
      	 error: function(xhr, desc, err) {
-           window.location = "index.html";
+           alert(xhr + ' ' + desc + ' ' + err);
            }
       	}); 
   	
