@@ -20,6 +20,8 @@
 	<script>
 	function init() {
 		
+		
+		
 		document.addEventListener("deviceready", deviceReady, false);
 		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
 			$("body").addClass("ios7");
@@ -102,7 +104,7 @@ function handleLogin() {
     	        }
 	     	},
      	 error: function(xhr, desc, err) {
-           window.location = "index.html";
+           window.location = "login.html";
            }
       	}); 
   	
