@@ -26,7 +26,7 @@ function showErrorMessage(message, $container, delay) {
 function Sync() {
 	$.ajax({
 		type : "POST",
-		url : "http://app.dslengineering.ca/services/sync.php",
+		url : "http://mycfit.ca/site_dsl/services/sync.php",
 		async : false,
 		data : {},
 		dataType : "json",
