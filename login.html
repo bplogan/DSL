@@ -20,7 +20,7 @@
 					var u = $("#username").val();
 					if (u != '' ) {
 						
-						alert("http://app.dslengineering.ca/services/login.php?u=" + u);
+						
 						$.ajax({
 							type : "POST",
 							url : "http://app.dslengineering.ca/services/login.php?u=" + u,
@@ -38,7 +38,7 @@
 									showErrorMessage(data.error, $("#errmsg"), 0);
 
 								} else {
-									//Sync();
+									Sync();
 									window.localStorage.setItem("username", u);
 									window.localStorage.setItem("uid", data.uid);
 									window.localStorage.setItem("name", data.name);
