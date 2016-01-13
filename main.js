@@ -42,6 +42,7 @@ function Sync() {
 
 function SubmitForm1() {
 	var CID = window.localStorage.getItem("CID");
+	
 	var aSMAW = "0";
 	$("#btnNext").html("Sending..");
 	if ($("#aSMAW").is(':checked')) {
@@ -151,7 +152,7 @@ function SubmitForm1() {
 		},
 		dataType : "json",
 		success : function(data) {
-
+           
 			if (data.result > 0) {
 				window.localStorage.setItem("SUCCESS", data.result);
 				window.location = "forms.html";
@@ -159,8 +160,9 @@ function SubmitForm1() {
 
 		},
 		error : function(xhr, desc, err) {
+			alert(xhr + ' ' + desc + ' ' + err);
 			showErrorMessage("Woops!  Something went wrong, please try again.", $("#err"), 0);
-
+	
 		}
 	});
 
