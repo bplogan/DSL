@@ -33,7 +33,7 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
     <gap:plugin name="cordova-plugin-statusbar" source="npm" />
-    <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
+    <gap:plugin name="cordova-plugin-network-information" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
